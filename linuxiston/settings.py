@@ -32,11 +32,13 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     "rest_framework",
     "rest_framework_swagger",
+    "ckeditor",
 ]
 
 # custom apps
 INSTALLED_APPS += [
-    "apps.users",
+    "apps.users.apps.UsersConfig",
+    "apps.blog.apps.BlogConfig"
 ]
 
 MIDDLEWARE = [
