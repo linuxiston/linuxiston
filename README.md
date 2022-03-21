@@ -1,14 +1,14 @@
-# linuxiston
+# Linuxiston.uz Website Codebase
 
-Linuxiston.uz Website Codebase
+O'zbekistonlik Linux foydalanuvchilari uchun [Linuxiston.uz](https://linuxiston.uz/) saytining kod bazasi.
 
 # Backend
 
-- Django
+- Django (folder `/`)
 
 # Frontend
 
-- React
+- React (folder: `frontend`)
 
 # Database
 
