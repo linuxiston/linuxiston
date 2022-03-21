@@ -18,6 +18,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="malikov.fun" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />

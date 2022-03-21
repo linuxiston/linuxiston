@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/linuxiston.iml" filepath="$PROJECT_DIR$/.idea/linuxiston.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../malikov.fun/.idea/malikov.fun.iml" filepath="$PROJECT_DIR$/../malikov.fun/.idea/malikov.fun.iml" />
     </modules>
   </component>
 </project>
