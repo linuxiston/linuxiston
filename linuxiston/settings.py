@@ -36,10 +36,7 @@ INSTALLED_APPS += [
 ]
 
 # custom apps
-INSTALLED_APPS += [
-    "apps.users.apps.UsersConfig",
-    "apps.blog.apps.BlogConfig"
-]
+INSTALLED_APPS += ["apps.users.apps.UsersConfig", "apps.blog.apps.BlogConfig"]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -65,6 +62,9 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
+            "libraries": {
+                "staticfiles": "django.templatetags.static",
+            },
         },
     },
 ]
@@ -129,7 +129,8 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly"
-    ]
+    ],
+    "DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema",
 }
 
 AUTH_USER_MODEL = "users.User"
