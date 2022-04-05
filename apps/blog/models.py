@@ -13,6 +13,9 @@ class Author(models.Model):
     youtube = models.URLField()
     github = models.URLField()
 
+    def __str__(self):
+        return self.full_name
+
 
 class Category(models.Model):
     category = models.CharField(max_length=30)
@@ -52,7 +55,7 @@ class Post(models.Model):
         return self.likes.count()
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'slug': self.slug})  # not created yet
+        return reverse('post_detail', args=[str(self.slug)])  # not created yet
 
     def __str__(self):
         return self.title
@@ -73,14 +76,14 @@ class VideoPost(models.Model):
     body = RichTextField()
     created = models.DateTimeField(auto_now_add=True)
     thumbnail = models.ImageField(upload_to='post-thumbnails')
-    likes = models.ManyToManyField(User, blank=True, related_name='likes')
+    likes = models.ManyToManyField(User, blank=True, related_name='vlikes')
     slug = models.SlugField()
 
     def number_of_likes(self):
         return self.likes.count()
 
     def get_absolute_url(self):
-        return reverse('video-post-detail', kwargs={'slug': self.slug})  # not created yet
+        return reverse('video_post_detail', args=[str(self.slug)])  # not created yet
 
     def __str__(self):
         return self.title

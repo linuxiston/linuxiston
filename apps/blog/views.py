@@ -1,31 +1,33 @@
-from django.shortcuts import render
-from rest_framework import viewsets
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Author, Category, Tag, Post, VideoPost, Comment, VideoComment, Faq
 
-from .models import Category, Post, Comment, Tag
-
-from .serializers import (
-    CategorySerializer,
-    PostSerializer,
-    CommentSerializer,
-    TagSerializer,
-)
-
-
-class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-
-
-class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+def home(request):
+    left = Post.objects.all()[0]
+    right = Post.objects.all()[1]
+    video_posts = VideoPost.objects.all()
+    faq = Faq.objects.filter(active=True)
+    categories = Category.objects.all()
+    context = {
+        'left': left,
+        'right': right,
+        'video_posts': video_posts,
+        'faq': faq,
+        'categories': categories
+    }
+    return render(request, 'index.html', context)
 
 
-class CommentViewSet(viewsets.ModelViewSet):
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
+def post_detail(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    context = {
+        'post': post
+    }
+    return render(request, 'single-blog.html', context)
 
 
-class TagViewSet(viewsets.ModelViewSet):
-    queryset = Tag.objects.all()
-    serializer_class = TagSerializer
+def video_post_detail(request, slug):
+    post = get_object_or_404(VideoPost, slug=slug)
+    context = {
+        'post': post
+    }
+    return render(request, 'blog-video.html', context)

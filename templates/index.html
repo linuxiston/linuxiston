@@ -1,0 +1,378 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+    <!--=====================================-->
+    <!--=        Banner Area Start         =-->
+    <!--=====================================-->
+    <section class="banner banner-style-2">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="banner-content" data-sal="slide-up" data-sal-duration="1000" data-sal-delay="100">
+                        <h1 class="title">Linuxiston - Linuxchilar oilasi</h1>
+                        <a href="portfolio.html" class="axil-btn btn-fill-white btn-large">Batafsil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="list-unstyled shape-group-18">
+            <li class="shape shape-1" data-sal="slide-left" data-sal-duration="1000" data-sal-delay="100"><img
+                    src="{% static 'media/banner/banner-shape-1.png' %}" alt="Shape"></li>
+            <li class="shape shape-2" data-sal="slide-right" data-sal-duration="1000" data-sal-delay="100"><img
+                    src="{% static 'media/banner/banner-shape-2.png' %}" alt="Shape"></li>
+            <li class="shape shape-3" data-sal="zoom-in" data-sal-duration="500" data-sal-delay="600"><img
+                    src="{% static 'media/others/bubble-16.png' %}" alt="Shape"></li>
+            <li class="shape shape-4" data-sal="zoom-in" data-sal-duration="500" data-sal-delay="600"><img
+                    src="{% static 'media/others/bubble-15.png' %}" alt="Shape"></li>
+            <li class="shape shape-5" data-sal="zoom-in" data-sal-duration="500" data-sal-delay="600"><img
+                    src="{% static 'media/others/bubble-14.png' %}" alt="Shape"></li>
+            <li class="shape shape-6" data-sal="zoom-in" data-sal-duration="500" data-sal-delay="600"><img
+                    src="{% static 'media/others/bubble-16.png' %}" alt="Shape"></li>
+            <li class="shape shape-7" data-sal="slide-down" data-sal-duration="500" data-sal-delay="600"><img
+                    src="{% static 'media/others/bubble-26.png' %}" alt="Shape"></li>
+        </ul>
+    </section>
+    <!--=====================================-->
+    <!--=        Service Area Start         =-->
+    <!--=====================================-->
+    <section class="section section-padding">
+        <div class="container">
+            <div class="section-heading heading-left mb--20 mb_md--70">
+                <span class="subtitle" style="text-transform: capitalize;">Biz siz uchun nima qila olamiz</span>
+                <h2 class="title">Sizga yordam bera <br>oladigan xizmatlarimiz</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 mt--200 mt_md--0" data-sal="slide-up" data-sal-duration="800" data-sal-delay="100">
+                    <div class="services-grid service-style-2">
+                        <div class="thumbnail">
+                            <img src="{% static 'media/icon/icon-1.png' %}" alt="icon">
+                        </div>
+                        <div class="content">
+                            <h5 class="title"><a href="service-design.html">Design</a></h5>
+                            <p>Simply drag and drop photos and videos into your workspace to automatically add them to
+                                your Collab Cloud library.</p>
+                            <a href="service-design.html" class="more-btn">Find out more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt--100 mt_md--0" data-sal="slide-up" data-sal-duration="800" data-sal-delay="200">
+                    <div class="services-grid service-style-2 active">
+                        <div class="thumbnail">
+                            <img src="{% static 'media/icon/icon-2.png' %}" alt="icon">
+                        </div>
+                        <div class="content">
+                            <h5 class="title"><a href="service-development.html">Development</a></h5>
+                            <p>Simply drag and drop photos and videos into your workspace to automatically add them to
+                                your Collab Cloud library.</p>
+                            <a href="service-development.html" class="more-btn">Find out more</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4" data-sal="slide-up" data-sal-duration="800" data-sal-delay="300">
+                    <div class="services-grid service-style-2">
+                        <div class="thumbnail">
+                            <img src="{% static 'media/icon/icon-6.png' %}" alt="icon">
+                        </div>
+                        <div class="content">
+                            <h5 class="title"><a href="service-content-strategy.html">Content strategy</a></h5>
+                            <p>Simply drag and drop photos and videos into your workspace to automatically add them to
+                                your Collab Cloud library.</p>
+                            <a href="service-content-strategy.html" class="more-btn">Find out more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="shape-group-7 list-unstyled">
+            <li class="shape shape-1"><img src="{% static 'media/others/circle-2.png' %}" alt="circle"></li>
+            <li class="shape shape-2"><img src="{% static 'media/others/bubble-2.png' %}" alt="Line"></li>
+            <li class="shape shape-3"><img src="{% static 'media/others/bubble-1.png' %}" alt="Line"></li>
+        </ul>
+    </section>
+    <!--=====================================-->
+    <!--=        Video tutorial Area Start         =-->
+    <!--=====================================-->
+    <section class="section section-padding-2 bg-color-light">
+        <div class="container">
+            <div class="section-heading heading-left">
+                <span class="subtitle">Video darsliklar</span>
+                <h2 class="title">Eng so'ngi <br> video darsliklar.</h2>
+            </div>
+            <div class="axil-isotope-wrapper">
+                <div class="isotope-button isotope-project-btn">
+                    <button data-filter="*" class="is-checked"><span class="filter-text">Barchasi</span></button>
+                    {% for cat in categories %}
+                        <button data-filter=".{{ cat }}"><span class="filter-text">{{ cat }}</span></button>
+                    {% endfor %}
+                </div>
+                <div class="row row-35 isotope-list">
+
+                    {% for post in video_posts %}
+                        {% if forloop.counter0 < 6 %}
+                            <div class="col-md-6 project {{ post.category }}">
+                                <div class="blog-grid blog-project-grid">
+                                    <div class="post-thumbnail">
+                                        <a href="{{ post.get_absolute_url }}"><img src="{{ post.thumbnail.url }}"
+                                                                                   alt="Post"></a>
+                                        <div class="popup-video">
+                                            <a href="{{ post.video_url }}"
+                                               class="play-btn popup-youtube"><i class="fas fa-play"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="content">
+                                        <h4 class="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                        </h4>
+                                        {% for tag in post.tags.all %}
+                                            <span class="subtitle">#{{ tag }}</span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        <ul class="shape-group-7 list-unstyled">
+            <li class="shape shape-1"><img src="{% static 'media/others/circle-2.png' %}" alt="circle"></li>
+            <li class="shape shape-2"><img src="{% static 'media/others/bubble-2.png' %}" alt="Line"></li>
+            <li class="shape shape-3"><img src="{% static 'media/others/bubble-1.png' %}" alt="Line"></li>
+        </ul>
+    </section>
+    <!--=====================================-->
+    <!--=        Counter Up Area Start      =-->
+    <!--=====================================-->
+    <section class="section section-padding bg-color-dark">
+        <div class="container">
+            <div class="section-heading heading-light">
+                <span class="subtitle">Sonlar nima deydi?</span>
+                <h2 class="title">Bizning yutuqlarimiz</h2>
+                <p> Biz o'tgan vaqt mobaynida ko'plab muvaffaqiyatlarga erishdik.</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-6" data-sal="slide-up" data-sal-duration="800" data-sal-delay="100">
+                    <div class="counterup-progress active">
+                        <div class="icon">
+                            <img src="{% static 'media/icon/icon-7.png' %}" alt="Apple">
+                        </div>
+                        <div class="count-number h2">
+                            <span class="number count" data-count="150">200</span>
+                            <span class="symbol">+</span>
+                        </div>
+                        <h6 class="title">Xursand mijozlar</h6>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" data-sal="slide-up" data-sal-duration="800" data-sal-delay="200">
+                    <div class="counterup-progress">
+                        <div class="icon">
+                            <img src="{% static 'media/icon/icon-8.png' %}" alt="Apple">
+                        </div>
+                        <div class="count-number h2">
+                            <span class="number count" data-count="360">30</span>
+                            <span class="symbol">+</span>
+                        </div>
+                        <h6 class="title">Maqola va darsliklar</h6>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" data-sal="slide-up" data-sal-duration="800" data-sal-delay="300">
+                    <div class="counterup-progress">
+                        <div class="icon">
+                            <img src="{% static 'media/icon/icon-9.png' %}" alt="Apple">
+                        </div>
+                        <div class="count-number h2">
+                            <span class="number count" data-count="600">600</span>
+                            <span class="symbol">+</span>
+                        </div>
+                        <h6 class="title">Faol obunachilar</h6>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" data-sal="slide-up" data-sal-duration="800" data-sal-delay="400">
+                    <div class="counterup-progress">
+                        <div class="icon">
+                            <img src="{% static 'media/icon/apple.png' %}" alt="Apple">
+                        </div>
+                        <div class="count-number h2">
+                            <span class="number count" data-count="64">4</span>
+                            <span class="symbol">+</span>
+                        </div>
+                        <h6 class="title">yillik jamoa</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="list-unstyled shape-group-10">
+            <!-- <li class="shape shape-1"><img src="assets/media/others/line-9.png" alt="Circle"></li> -->
+            <li class="shape shape-2"><img src="{% static 'media/others/bubble-42.png' %}" alt="Circle"></li>
+            <li class="shape shape-3"><img src="{% static 'media/others/bubble-43.png' %}" alt="Circle"></li>
+        </ul>
+    </section>
+
+    <!--=====================================-->
+    <!--=        Blog Area Start       	    =-->
+    <!--=====================================-->
+    <section class="section section-padding-equal">
+        <div class="container">
+            <div class="section-heading">
+                <span class="subtitle">Nima yangiliklar</span>
+                <h2 class="title">So'ngi Maqolalar</h2>
+                <p>Bizning maqolalarimiz orqali Linux ga oid bilimlarizni o'stirib va Linuxga oid so'ngi xabarlardan
+                    xabardor bo'lib borasiz</p>
+            </div>
+            <div class="row g-0">
+                <div class="col-xl-6" data-sal="slide-right" data-sal-duration="800" data-sal-delay="100">
+                    <div class="blog-list active">
+                        <div class="post-thumbnail">
+                            <a href="{{ left.get_absolute_url }}"><img src="{{ left.thumbnail.url }}" width="300px"
+                                                                       alt="Blog Post"></a>
+                        </div>
+                        <div class="post-content">
+                            <h5 class="title"><a href="{{ right.get_absolute_url }}">{{ left.title }}</a></h5>
+                            <p>{{ left.description }}...</p>
+                            <a href="{{ left.get_absolute_url }}" class="more-btn">Batafsil o'qish<i
+                                    class="far fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6" data-sal="slide-left" data-sal-duration="800" data-sal-delay="100">
+                    <div class="blog-list border-start">
+                        <div class="post-thumbnail">
+                            <a href="{{ right.get_absolute_url }}"><img src="{{ right.thumbnail.url }}" width="300px" alt="Blog Post"></a>
+                        </div>
+                        <div class="post-content">
+                            <h5 class="title"><a href="{{ right.get_absolute_url }}">{{ right.title }}</a></h5>
+                            <p>{{ right.description }}</p>
+                            <a href="{{ right.get_absolute_url }}" class="more-btn">Batafsil o'qish<i
+                                    class="far fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="shape-group-1 list-unstyled">
+            <li class="shape shape-1"><img src="{% static 'media/others/bubble-1.png' %}" alt="bubble"></li>
+            <li class="shape shape-2"><img src="{% static 'media/others/line-1.png' %}" alt="bubble"></li>
+            <li class="shape shape-3"><img src="{% static 'media/others/line-2.png' %}" alt="bubble"></li>
+            <li class="shape shape-4"><img src="{% static 'media/others/bubble-2.png' %}" alt="bubble"></li>
+        </ul>
+    </section>
+    <!--=====================================-->
+    <!--=        Brand Area Start       	=-->
+    <!--=====================================-->
+    <section class="section section-padding bg-color-dark">
+        <div class="container">
+            <div class="section-heading heading-light-left">
+                <span class="subtitle">Linux</span>
+                <h2 class="title">Linux oilasi.</h2>
+                <p>Linux ning eng yaxshi distributivlar</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-6" data-sal="slide-up" data-sal-duration="500">
+                    <div class="brand-grid active">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo-ubuntu_cof-orange-hex.svg/80px-Logo-ubuntu_cof-orange-hex.svg.png"
+                             alt="Brand">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" data-sal="slide-up" data-sal-duration="500" data-sal-delay="100">
+                    <div class="brand-grid">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Fedora_logo.svg/80px-Fedora_logo.svg.png"
+                             alt="Brand">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" data-sal="slide-up" data-sal-duration="500" data-sal-delay="200">
+                    <div class="brand-grid">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Archlinux-icon-crystal-64.svg/80px-Archlinux-icon-crystal-64.svg.png"
+                             alt="Brand">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6" data-sal="slide-up" data-sal-duration="500" data-sal-delay="300">
+                    <div class="brand-grid" style="padding-bottom: 15px;">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Deepin_logo.svg/80px-Deepin_logo.svg.png"
+                             alt="Brand">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="list-unstyled shape-group-10">
+            <li class="shape shape-1"><img src="{% static 'media/others/line-9.png' %}" alt="Circle"></li>
+        </ul>
+    </section>
+    <!--=====================================-->
+    <!--=        QA Area Start      =-->
+    <!--=====================================-->
+    <section class="section-padding bg-color-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="why-choose-us">
+                        <div class="section-heading heading-left">
+                            <span class="subtitle">Savol-Javob</span>
+                            <h2 class="title">Eng ko'p beriladigan savollar</h2>
+                            <p>Eng ko'p beriladigan savollarga javob olishingiz mumkin.</p>
+                        </div>
+                        <div class="accordion" id="choose-accordion">
+                            {% for qa in faq %}
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading{{ qa.id }}">
+                                        <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#collapse{{ qa.id }}" aria-expanded="false"
+                                                aria-controls="collapse{{ qa.id }}">
+                                            <i class='bx bxs-chevron-right'></i> {{ qa.title }}
+                                        </button>
+                                    </h2>
+                                    <div id="collapse{{ qa.id }}" class="accordion-collapse collapse"
+                                         aria-labelledby="heading{{ qa.id }}"
+                                         data-bs-parent="#choose-accordion" style="">
+                                        <div class="accordion-body">
+                                            {{ qa.description }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--=====================================-->
+    <!--=     Call To Action Area Start     =-->
+    <!--=====================================-->
+    <section class="section call-to-action-area">
+        <div class="container">
+            <div class="call-to-action">
+                <div class="section-heading heading-light">
+                    <span class="subtitle">Keling birga ishlaymiz</span>
+                    <h2 class="title">Bizning jamoaga qo'shiling va biz birgalikda bir kuchmiz</h2>
+                    <a href="" class="axil-btn btn-large btn-fill-white">Jamoaga qo'shilish</a>
+                </div>
+                <div class="thumbnail">
+                    <div class="larg-thumb" data-sal="zoom-in" data-sal-duration="600" data-sal-delay="100">
+                        <img class="paralax-image" src="{% static 'media/others/chat-group.png' %}" alt="Chat">
+                    </div>
+                    <ul class="list-unstyled small-thumb">
+                        <li class="shape shape-1" data-sal="slide-right" data-sal-duration="800" data-sal-delay="400">
+                            <img class="paralax-image" src="{% static 'media/others/laptop-poses.png' %}" alt="Laptop">
+                        </li>
+                        <li class="shape shape-2" data-sal="slide-left" data-sal-duration="800" data-sal-delay="300">
+                            <img class="paralax-image" src="{% static 'media/others/bill-pay.png' %}" alt="Bill">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <ul class="list-unstyled shape-group-9">
+            <li class="shape shape-1"><img src="{% static 'media/others/bubble-12.png' %}" alt="Comments"></li>
+            <li class="shape shape-2"><img src="{% static 'media/others/bubble-16.png' %}" alt="Comments"></li>
+            <li class="shape shape-3"><img src="{% static 'media/others/bubble-13.png' %}" alt="Comments"></li>
+            <li class="shape shape-4"><img src="{% static 'media/others/bubble-14.png' %}" alt="Comments"></li>
+            <li class="shape shape-5"><img src="{% static 'media/others/bubble-16.png' %}" alt="Comments"></li>
+            <li class="shape shape-6"><img src="{% static 'media/others/bubble-15.png' %}" alt="Comments"></li>
+            <li class="shape shape-7"><img src="{% static 'media/others/bubble-16.png' %}" alt="Comments"></li>
+        </ul>
+    </section>
+
+
+{% endblock %}
