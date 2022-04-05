@@ -58,6 +58,22 @@ def post_list_category(request, category):
     return render(request, 'blog-category.html', context)
 
 
+def post_list_videos(request):
+    posts = VideoPost.objects.all()
+    page_num = request.GET.get('sahifa', 1)
+    paginator = Paginator(posts, 1)
+    try:
+        posts = paginator.page(page_num)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    context = {
+        'posts': posts,
+    }
+    return render(request, 'blog-video.html', context)
+
+
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     context = {
