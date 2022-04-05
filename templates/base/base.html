@@ -77,7 +77,7 @@
                             <div class="d-block d-lg-none">
                                 <div class="mobile-nav-header">
                                     <div class="mobile-nav-logo">
-                                        <a href="index-1.html">
+                                        <a href="{% url 'home' %}">
                                             <img class="light-mode" src="{% static 'media/logo-2.svg' %}"
                                                  alt="Site Logo">
                                             <img class="dark-mode" src="{% static 'media/logo-3.svg' %}"
@@ -94,8 +94,8 @@
                                 <li class="menu-item-has-children">
                                     <a href="javascript:void(0);">Blog &nbsp;<i class="fa-solid fa-angle-down"></i></a>
                                     <ul class="axil-submenu">
-                                        <li><a href="blog.html">Maqolalar</a></li>
-                                        <li><a href="blog-video.html">Video darsliklar</a></li>
+                                        <li><a href="{% url 'post_list' %}">Maqolalar</a></li>
+                                        <li><a href="{% url 'post_list_videos' %}">Video darsliklar</a></li>
                                     </ul>
                                 </li>
                                 <li>

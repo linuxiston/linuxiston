@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Author, Category, Tag, Post, VideoPost, Comment, VideoComment, Faq
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from .forms import CommentForm
+from datetime import datetime
 
 
 def home(request):
@@ -76,8 +78,23 @@ def post_list_videos(request):
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.cleaned_data['comment']
+            p = Comment(post=post, author=request.user, comment=comment, created=datetime.now())
+            p.save()
+    else:
+        form = CommentForm()
+    related_posts = Post.objects.filter(category=post.category)
+    left = Post.objects.all()[0]
+    right = Post.objects.all()[1]
     context = {
-        'post': post
+        'post': post,
+        'form': form,
+        'related_posts': related_posts,
+        'left': left,
+        'right': right
     }
     return render(request, 'single-blog.html', context)
 
