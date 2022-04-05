@@ -1,86 +1,55 @@
 {% load static %}
 <div class="col-lg-4">
-                    <div class="axil-sidebar">
-                        <div class="widget widget-search">
-                            <h4 class="widget-title">Qidirish</h4>
-                            <form action="#" class="blog-search">
-                                <input type="text" placeholder="Qidirish…">
-                                <button class="search-button"><i class='bx bx-search-alt-2'
-                                                                 style="font-size: 20px;"></i></button>
-                            </form>
+    <div class="axil-sidebar">
+        <div class="widget widget-search">
+            <h4 class="widget-title">Qidirish</h4>
+            <form action="#" class="blog-search">
+                <input type="text" placeholder="Qidirish…">
+                <button class="search-button"><i class='bx bx-search-alt-2'
+                                                 style="font-size: 20px;"></i></button>
+            </form>
+        </div>
+        <div class="widget widget-categories">
+            <h4 class="widget-title">Bo'limlar</h4>
+            <ul class="category-list list-unstyled">
+                {% for cat in sidebar_cats %}
+                    <li><a href="blog-category.html">{{ cat }}({{ cat.post_set.all.count }})</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="widget widge-social-share">
+            <div class="blog-share">
+                <h5 class="title">Obuna bo'ling:</h5>
+                <ul class="social-list list-unstyled">
+                    <li><a href="https://facebook.com/"><i class="fab fa-github"></i></a></li>
+                    <li><a href="https://www.instagram.com/"><i class="fab fa-telegram"></i></a>
+                    </li>
+                    <li><a href="https://www.linkedin.com/"><i class="fab fa-instagram"></i></a>
+                    </li>
+                    <li><a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="widget widget-recent-post">
+            <h4 class="widget-title">So'ngi maqolalar</h4>
+            <div class="post-list-wrap">
+                {% for post in sidebar_posts %}
+                    <div class="single-post">
+                        <div class="post-thumbnail">
+                            <a href="{{ post.get_absolute_url }}"><img src="{{ post.thumbnail.url }}" width="150px"
+                                                            alt="Blog"></a>
                         </div>
-                        <div class="widget widget-categories">
-                            <h4 class="widget-title">Bo'limlar</h4>
-                            <ul class="category-list list-unstyled">
-                                <li><a href="blog-category.html">Linux(3)</a></li>
-                                <li><a href="blog-category.html">Ubuntu(2)</a></li>
-                                <li><a href="blog-category.html">Muammolar(1)</a></li>
-                                <li><a href="blog-category.html">Yangi distro(4)</a></li>
-                                <li><a href="blog-category.html">Maslahatlar(5)</a></li>
+                        <div class="post-content">
+                            <h6 class="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h6>
+                            <ul class="blog-meta list-unstyled">
+                                <li>{{ post.created|date:"M d, Y" }}</li>
+                                <li><i class='bx bx-like'></i> {{ post.number_of_likes }}</li>
+                                <li><i class='bx bx-comment'></i> {{ post.comments.all.count }}</li>
                             </ul>
                         </div>
-                        <div class="widget widge-social-share">
-                            <div class="blog-share">
-                                <h5 class="title">Obuna bo'ling:</h5>
-                                <ul class="social-list list-unstyled">
-                                    <li><a href="https://facebook.com/"><i class="fab fa-github"></i></a></li>
-                                    <li><a href="https://www.instagram.com/"><i class="fab fa-telegram"></i></a>
-                                    </li>
-                                    <li><a href="https://www.linkedin.com/"><i class="fab fa-instagram"></i></a>
-                                    </li>
-                                    <li><a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="widget widget-recent-post">
-                            <h4 class="widget-title">So'ngi postlar</h4>
-                            <div class="post-list-wrap">
-                                <div class="single-post">
-                                    <div class="post-thumbnail">
-                                        <a href="single-blog.html"><img src="assets/media/blog/blog-5.png"
-                                                                        alt="Blog"></a>
-                                    </div>
-                                    <div class="post-content">
-                                        <h6 class="title"><a href="single-blog.html">Garuda Linuxni macOS ga
-                                            o'xshatish</a></h6>
-                                        <ul class="blog-meta list-unstyled">
-                                            <li>Sep 10, 2021</li>
-                                            <li><i class='bx bx-like'></i> 23</li>
-                                            <li><i class='bx bx-comment'></i> 12</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-post">
-                                    <div class="post-thumbnail">
-                                        <a href="single-blog.html"><img src="assets/media/blog/blog-6.png"
-                                                                        alt="Blog"></a>
-                                    </div>
-                                    <div class="post-content">
-                                        <h6 class="title"><a href="single-blog.html">Linux nima va Windows dan nima
-                                            afzalligi bor.</a></h6>
-                                        <ul class="blog-meta list-unstyled">
-                                            <li>Sep 15, 2021</li>
-                                            <li><i class='bx bx-like'></i> 23</li>
-                                            <li><i class='bx bx-comment'></i> 12</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-post">
-                                    <div class="post-thumbnail">
-                                        <a href="single-blog.html"><img src="assets/media/blog/blog-7.png"
-                                                                        alt="Blog"></a>
-                                    </div>
-                                    <div class="post-content">
-                                        <h6 class="title"><a href="single-blog.html">Arch Linux ni VirtualBox ga
-                                            o'rnatish</a></h6>
-                                        <ul class="blog-meta list-unstyled">
-                                            <li>Sep 5, 2021</li>
-                                            <li><i class='bx bx-like'></i> 23</li>
-                                            <li><i class='bx bx-comment'></i> 12</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
