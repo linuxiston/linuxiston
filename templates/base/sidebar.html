@@ -3,8 +3,8 @@
     <div class="axil-sidebar">
         <div class="widget widget-search">
             <h4 class="widget-title">Qidirish</h4>
-            <form action="#" class="blog-search">
-                <input type="text" placeholder="Qidirish…">
+            <form action="{% url 'post_list' %}" class="blog-search" method="get">
+                <input placeholder="Maqola qidirish…" name="qidirish" type="text">
                 <button class="search-button"><i class='bx bx-search-alt-2'
                                                  style="font-size: 20px;"></i></button>
             </form>

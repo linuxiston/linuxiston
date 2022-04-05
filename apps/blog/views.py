@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Author, Category, Tag, Post, VideoPost, Comment, VideoComment, Faq
+from django.db.models import Q
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
 
 def home(request):
     left = Post.objects.all()[0]
@@ -16,6 +19,25 @@ def home(request):
     }
     return render(request, 'index.html', context)
 
+
+def post_list(request):
+    query = request.GET.get('qidirish')
+    if query:
+        posts = Post.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+    else:
+        posts = Post.objects.all()
+    page_num = request.GET.get('sahifa', 1)
+    paginator = Paginator(posts, 1)
+    try:
+        posts = paginator.page(page_num)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    context = {
+        'posts': posts,
+    }
+    return render(request, 'blog.html', context)
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
