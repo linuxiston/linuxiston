@@ -13,7 +13,7 @@
             <h4 class="widget-title">Bo'limlar</h4>
             <ul class="category-list list-unstyled">
                 {% for cat in sidebar_cats %}
-                    <li><a href="blog-category.html">{{ cat }}({{ cat.post_set.all.count }})</a></li>
+                    <li><a href="{% url 'post_list_category' cat.category %}">{{ cat }}({{ cat.post_set.all.count }})</a></li>
                 {% endfor %}
             </ul>
         </div>

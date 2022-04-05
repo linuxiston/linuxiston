@@ -39,6 +39,25 @@ def post_list(request):
     }
     return render(request, 'blog.html', context)
 
+
+def post_list_category(request, category):
+    category = get_object_or_404(Category, category=category)
+    posts = Post.objects.filter(category=category)
+    page_num = request.GET.get('sahifa', 1)
+    paginator = Paginator(posts, 1)
+    try:
+        posts = paginator.page(page_num)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    context = {
+        'posts': posts,
+        'category': category
+    }
+    return render(request, 'blog-category.html', context)
+
+
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     context = {
