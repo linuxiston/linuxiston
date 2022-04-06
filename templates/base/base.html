@@ -109,7 +109,7 @@
                                     {% if user.is_authenticated %}
                                         <a style="color: #5956E9">{{ user }}</a>
                                     {% else %}
-                                        <a href="{% provider_login_url 'google' %}" style="color: #5956E9"
+                                        <a style="color: #5956E9; cursor: pointer"
                                            data-bs-toggle="modal"
                                            data-bs-target="#modalSignin">Kirish</a>
                                     {% endif %}
@@ -347,7 +347,7 @@
                 </form>
                 <form action="{% provider_login_url 'github' %}" method="post">{% csrf_token %}
                     <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-4"
-                            href="{% provider_login_url 'github' %}" type="submit">
+                            href="{% provider_login_url 'github' %}?next={{ request.path }}" type="submit">
                         <i class="fa-brands fa-github"></i>&nbsp;
                         GitHub orqali kirish
                     </button>

@@ -84,22 +84,26 @@
                         <div class="blog-comment mt-5">
                             <h3 class="section-title">Izohlar:</h3>
                             <div class="comment-list">
-                                {% for comment in post.comments.all %}
-                                    <!-- Start Single Comment  -->
-                                    <div class="comment">
-                                        <div class="thumbnail">
-                                            <img src="https://img.freepik.com/free-vector/cool-monkey-holding-money-bag-cartoon-vector-icon-illustration-animal-finance-icon-concept-isolated-premium-vector-flat-cartoon-style_138676-3366.jpg"
-                                                 style="border-radius: 50%" width="100px" alt="Blog Comment">
-                                        </div>
-                                        <div class="content">
-                                            <div class="heading">
-                                                <h5 class="title">{{ comment.author }}</h5>
+                                {% if post.comments.all.count != 0 %}
+                                    {% for comment in post.comments.all %}
+                                        <!-- Start Single Comment  -->
+                                        <div class="comment">
+                                            <div class="thumbnail">
+                                                <img src="https://img.freepik.com/free-vector/cool-monkey-holding-money-bag-cartoon-vector-icon-illustration-animal-finance-icon-concept-isolated-premium-vector-flat-cartoon-style_138676-3366.jpg"
+                                                     style="border-radius: 50%" width="100px" alt="Blog Comment">
                                             </div>
-                                            <p>{{ comment.comment }}</p>
+                                            <div class="content">
+                                                <div class="heading">
+                                                    <h5 class="title">{{ comment.author }}</h5>
+                                                </div>
+                                                <p>{{ comment.comment }}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- End Single Comment  -->
-                                {% endfor %}
+                                        <!-- End Single Comment  -->
+                                    {% endfor %}
+                                {% else %}
+                                    <h5>Hozircha izohlar mavjud emas.</h5>
+                                {% endif %}
 
 
                             </div>
@@ -126,8 +130,9 @@
                                 </form>
                             {% else %}
 
-                                <h3 class="title">Izoh qoldirish uchun <a href="/"
-                                                                          class="text-decoration-underline text-primary">ro'yxatdan</a>
+                                <h3 class="title">Izoh qoldirish uchun <a style="color: #5956E9; cursor: pointer"
+                                           data-bs-toggle="modal"
+                                           data-bs-target="#modalSignin">ro'yxatdan</a>
                                     o'ting</h3>
                             {% endif %}
                         </div>
@@ -136,76 +141,6 @@
                 <!-- Sidebar -->
                 {% include 'base/sidebar.html' %}
                 <!-- End sidebar -->
-            </div>
-        </div>
-    </section>
-    <!--=====================================-->
-    <!--=       Recent Post Area Start      =-->
-    <!--=====================================-->
-    <section class="section section-padding-equal pt-0 related-blog-area">
-        <div class="container">
-            <div class="section-heading heading-left">
-                <h3 class="title">O'xshash maqolalar</h3>
-            </div>
-            <div class="slick-slider recent-post-slide" data-slick='{"infinite": true, "autoplay": true, "arrows": false, "dots": false, "slidesToShow": 2,
-        "responsive": [
-            {
-                "breakpoint": 1199,
-                "settings": {
-                    "slidesToShow": 1
-                }
-            }
-        ]
-        }'>
-                {% if related_posts %}
-                    {% for post in related_posts %}
-                        <div class="slick-slide">
-                            <div class="blog-list">
-                                <div class="post-thumbnail">
-                                    <a href="{{ post.get_absolute_url }}"><img src="{{ post.thumbnail.url }}" width="50px"
-                                                                               alt="Blog Post"></a>
-                                </div>
-                                <div class="post-content">
-                                    <h5 class="title"><a href="single-blog-2.html">{{ post.title }}</a></h5>
-                                    <p>{{ post.description }}</p>
-                                    <a href="{{ post.get_absolute_url }}" class="more-btn">Batafsil<i
-                                            class="far fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                {% else %}
-                    <div class="slick-slide">
-                        <div class="blog-list">
-                            <div class="post-thumbnail">
-                                <a href="{{ left.get_absolute_url }}"><img width="50px" src="{{ left.thumbnail.url }}"
-                                                                           alt="Blog Post"></a>
-                            </div>
-                            <div class="post-content">
-                                <h5 class="title"><a href="single-blog-2.html">{{ left.title }}</a></h5>
-                                <p>{{ left.description }}</p>
-                                <a href="{{ left.get_absolute_url }}" class="more-btn">Batafsil<i
-                                        class="far fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                        <div class="slick-slide">
-                            <div class="blog-list">
-                                <div class="post-thumbnail">
-                                    <a href="{{ right.get_absolute_url }}"><img src="{{ right.thumbnail.url }}"
-                                                                                alt="Blog Post"></a>
-                                </div>
-                                <div class="post-content">
-                                    <h5 class="title"><a href="single-blog-2.html">{{ right.title }}</a></h5>
-                                    <p>{{ right.description }}</p>
-                                    <a href="{{ right.get_absolute_url }}" class="more-btn">Batafsil<i
-                                            class="far fa-angle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-
-
             </div>
         </div>
     </section>

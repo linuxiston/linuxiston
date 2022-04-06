@@ -1,0 +1,2 @@
+{% load i18n %}
+{% blocktrans %}Mayli ko'rishguncha. Sizdan xafa emasmiz 🥲{% endblocktrans %}
