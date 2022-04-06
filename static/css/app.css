@@ -10603,3 +10603,20 @@ body.op-modal-open {
         padding-bottom: 0;
     }
 }
+
+
+/*.mainmenu > li > button > a {*/
+/*    color: var(--color-body);*/
+/*    font-weight: 500;*/
+/*    font-size: var(--font-body-2);*/
+/*    font-family: var(--font-primary);*/
+/*    line-height: 60px;*/
+/*    height: 60px;*/
+/*    display: block;*/
+/*    position: relative;*/
+/*    -webkit-transition: var(--transition);*/
+/*    transition: var(--transition);*/
+/*}*/
+.mainmenu > li > .btn:hover{
+    background-color: red !important;
+}
