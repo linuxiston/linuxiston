@@ -9,6 +9,7 @@ from .views import (
     post_list,
     post_list_category,
     post_list_videos,
+    add_like_post
 )
 
 # app_name = "blogs"
@@ -19,7 +20,6 @@ router.register("posts", PostViewSet)
 router.register("comments", CommentViewSet)
 router.register("tags", TagViewSet)
 
-
 urlpatterns = [
     path("api/", include(router.urls)),  # API
     path("maqolalar/", post_list, name="post_list"),
@@ -28,4 +28,8 @@ urlpatterns = [
     path("maqola/<str:slug>/", post_detail, name="post_detail"),
     path("video/<str:slug>/", video_post_detail, name="video_post_detail"),
     path("", home, name="home"),
+]
+
+urlpatterns += [
+    path('like/post/<int:pk>/', add_like_post, name='like-post'),
 ]

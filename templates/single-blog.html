@@ -26,7 +26,7 @@
     <!--=====================================-->
     <!--=        Blog Area Start       	    =-->
     <!--=====================================-->
-    <section class="section-padding-equal">
+    <section class="section-padding-equal" id="likes">
         <div class="container">
             <div class="row row-40">
                 <div class="col-lg-8">
@@ -58,8 +58,17 @@
                                     <span style="font-weight: lighter"><a href="/"> #{{ tag }} &nbsp;</a> </span>
                                 {% endfor %}
                             </h5>
-                            <button class="btn btn-block btn-outline-secondary btn-lg mb-2 mx-auto"><i
-                                    class="fa fa-thumbs-up"> L i k e - {{ post.number_of_likes }}</i></button>
+                            {% if user not in post.likes.all %}
+                                <button hx-post="{% url 'like-post' post.id %}" id="likes"
+                                        hx-swap="outerHTML"
+                                        class="btn btn-block btn-outline-secondary btn-lg mb-2 mx-auto"
+                                        name="post_id" value="{{ post.id }}"><i
+                                        class="fa fa-thumbs-up"> L i k e - {{ post.number_of_likes }}</i></button>
+                            {% else %}
+                                <button class="btn btn-block btn-outline-secondary btn-lg mb-2 mx-auto disabled"><i
+                                        class="fa fa-thumbs-up"> L i k e - {{ post.number_of_likes }}</i></button>
+                            {% endif %}
+
                         </div>
                         <div class="blog-author">
                             <div class="author">
@@ -131,8 +140,8 @@
                             {% else %}
 
                                 <h3 class="title">Izoh qoldirish uchun <a style="color: #5956E9; cursor: pointer"
-                                           data-bs-toggle="modal"
-                                           data-bs-target="#modalSignin">ro'yxatdan</a>
+                                                                          data-bs-toggle="modal"
+                                                                          data-bs-target="#modalSignin">ro'yxatdan</a>
                                     o'ting</h3>
                             {% endif %}
                         </div>

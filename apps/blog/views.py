@@ -5,8 +5,14 @@ from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .forms import CommentForm, EmailForm
 from datetime import datetime
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
+
+
+def add_like_post(request, pk):
+    post = get_object_or_404(Post, id=pk)
+    post.likes.add(request.user)
+    return HttpResponse("<h4 class='text-success'> 😍 </h4>")
 
 
 def home(request):
