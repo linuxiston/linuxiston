@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="{% static 'css/vendor/odometer-theme-default.css' %}">
     <!-- Site Stylesheet -->
     <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <!-- Load from unpkg -->
+    <script src="https://unpkg.com/htmx.org@1.7.0"></script>
 </head>
 
 <body class="sticky-header">
@@ -187,9 +189,10 @@
                             <div class="footer-newsletter">
                                 <h2 class="title">Obuna bo'ling</h2>
                                 <p>Bizning email xabarnomaga a'zo bo'ling va yangiliklarni o'tkazib yubormang</p>
-                                <form>
+                                <form action="{% url 'home' %}" method="post">{% csrf_token %}
                                     <div class="input-group">
-                                        <input type="email" class="form-control" placeholder="Email address">
+                                        <input type="email" class="form-control" name="email" id="id_email"
+                                               placeholder="Email manzil">
                                         <button class="subscribe-btn" type="submit">A'zo bo'lish</button>
                                     </div>
                                 </form>

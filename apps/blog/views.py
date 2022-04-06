@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Author, Category, Tag, Post, VideoPost, Comment, VideoComment, Faq
+from apps.users.models import Email
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .forms import CommentForm
+from .forms import CommentForm, EmailForm
 from datetime import datetime
+from django.http import HttpResponseRedirect
 
 
 def home(request):
@@ -12,6 +14,19 @@ def home(request):
     video_posts = VideoPost.objects.all()
     faq = Faq.objects.filter(active=True)
     categories = Category.objects.all()
+    if request.method == 'POST':
+        emailform = EmailForm(request.POST)
+        if emailform.is_valid():
+            email = emailform.cleaned_data['email']
+            if Email.objects.filter(email=email).exists():
+                pass
+            else:
+                p = Email(email=email, created=datetime.now())
+                p.save()
+                path = f"{request.META.get('HTTP_REFERER')}#footer"
+                return HttpResponseRedirect(path)
+    else:
+        emailform = EmailForm()
     context = {
         'left': left,
         'right': right,

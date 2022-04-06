@@ -1,11 +1,13 @@
 from django.contrib import admin
 from .models import Category, Tag, Post, VideoPost, Comment, VideoComment, Author, Faq
+from apps.users.models import Email
 
 admin.site.register(Category)
 admin.site.register(Tag)
 admin.site.register(Comment)
 admin.site.register(VideoComment)
 admin.site.register(Faq)
+admin.site.register(Email)
 
 
 @admin.register(Post)

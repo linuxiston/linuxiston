@@ -536,7 +536,7 @@ input {
 }
 
 .input-group:before {
-    content: url("../../assets/media/icon/message.png");
+    content: url("/static/media/icon/message.png");
     position: absolute;
     left: 30px;
     top: 24px;
