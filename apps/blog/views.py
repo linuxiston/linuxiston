@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .forms import CommentForm, EmailForm
 from datetime import datetime
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 
 def home(request):
@@ -18,13 +19,14 @@ def home(request):
         emailform = EmailForm(request.POST)
         if emailform.is_valid():
             email = emailform.cleaned_data['email']
+            path = f"{request.META.get('HTTP_REFERER')}"
             if Email.objects.filter(email=email).exists():
-                pass
+                messages.info(request, "Hmm. Siz allaqachon a'zo bo'lgansiz 😊")
             else:
                 p = Email(email=email, created=datetime.now())
                 p.save()
-                path = f"{request.META.get('HTTP_REFERER')}#footer"
-                return HttpResponseRedirect(path)
+                messages.success(request, "Ajoyib! Email xabarnomaga muvaffaqiyatli a'zo bo'ldingiz 🤗")
+            return HttpResponseRedirect(path)
     else:
         emailform = EmailForm()
     context = {
