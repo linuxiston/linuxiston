@@ -9,6 +9,12 @@ class CommentForm(forms.ModelForm):
         fields = ("comment",)
 
 
+class CommentVideForm(forms.ModelForm):
+    class Meta:
+        model = VideoComment
+        fields = ("comment",)
+
+
 class EmailForm(forms.ModelForm):
     class Meta:
         model = Email

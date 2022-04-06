@@ -3,7 +3,7 @@ from .models import Author, Category, Tag, Post, VideoPost, Comment, VideoCommen
 from apps.users.models import Email
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .forms import CommentForm, EmailForm
+from .forms import CommentForm, EmailForm, CommentVideForm
 from datetime import datetime
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
@@ -13,6 +13,13 @@ def add_like_post(request, pk):
     post = get_object_or_404(Post, id=pk)
     post.likes.add(request.user)
     return HttpResponse("<h4 class='text-success'> 😍 </h4>")
+
+
+def add_video_like_post(request, pk):
+    post = get_object_or_404(VideoPost, id=pk)
+    post.likes.add(request.user)
+    return HttpResponse("<h4 class='text-success'> 😍 </h4>")
+
 
 
 def home(request):
@@ -115,20 +122,29 @@ def post_detail(request, slug):
             return HttpResponseRedirect(path)
     else:
         form = CommentForm()
-    related_posts = Post.objects.filter(category=post.category)
-    left = Post.objects.all()[0]
-    right = Post.objects.all()[1]
     context = {
         "post": post,
         "form": form,
-        "related_posts": related_posts,
-        "left": left,
-        "right": right,
     }
     return render(request, "single-blog.html", context)
 
 
-def video_post_detail(request, slug):
+def post_video_detail(request, slug):
     post = get_object_or_404(VideoPost, slug=slug)
-    context = {"post": post}
-    return render(request, "blog-video.html", context)
+    if request.method == "POST":
+        form = CommentVideForm(request.POST)
+        if form.is_valid():
+            comment = form.cleaned_data["comment"]
+            p = VideoComment(
+                post=post, author=request.user, comment=comment, created=datetime.now()
+            )
+            p.save()
+            path = f"{post.get_absolute_url()}#comment-section"
+            return HttpResponseRedirect(path)
+    else:
+        form = CommentVideForm()
+    context = {
+        "post": post,
+        "form": form,
+    }
+    return render(request, "single-video-blog.html", context)

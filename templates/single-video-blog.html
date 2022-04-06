@@ -1,0 +1,169 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <!--=====================================-->
+    <!--=       Breadcrumb Area Start       =-->
+    <!--=====================================-->
+    <div class="breadcrum-area">
+        <div class="container">
+            <div class="breadcrumb">
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+                    <li class="active">Video darslik</li>
+                </ul>
+                <h1 class="title h2">{{ post.title }}</h1>
+            </div>
+        </div>
+        <ul class="shape-group-8 list-unstyled">
+            <li class="shape shape-1" data-sal="slide-right" data-sal-duration="500" data-sal-delay="100"><img
+                    src="{% static 'media/others/bubble-9.png' %}" alt="Bubble"></li>
+            <li class="shape shape-2" data-sal="slide-left" data-sal-duration="500" data-sal-delay="200"><img
+                    src="{% static 'media/others/bubble-10.png' %}" alt="Bubble1"></li>
+            <li class="shape shape-3" data-sal="slide-up" data-sal-duration="500" data-sal-delay="300"><img
+                    src="{% static 'media/others/line-4.png' %}" alt="Line"></li>
+        </ul>
+    </div>
+    <!--=====================================-->
+    <!--=        Blog Area Start       	    =-->
+    <!--=====================================-->
+    <section class="section-padding-equal" id="likes">
+        <div class="container">
+            <div class="row row-40">
+                <div class="col-lg-8">
+                    <div class="single-blog">
+                        <div class="single-blog-content blog-grid">
+                            <div class="post-thumbnail">
+                                <img src="{{ post.thumbnail.url }}" alt="Blog">
+                                <div class="popup-video">
+                                    <a href="{{ post.video_url }}"
+                                       class="play-btn popup-youtube"><i class="fas fa-play"></i></a>
+                                </div>
+                            </div>
+                            <div class="author">
+                                <div class="author-thumb">
+                                    <img src="{{ post.author.avatar.url }}" width="80px" style="border-radius: 50%"
+                                         alt="Blog Author">
+                                </div>
+                                <div class="info">
+                                    <h6 class="author-name">{{ post.author.full_name }}</h6>
+                                    <ul class="blog-meta list-unstyled">
+                                        <li>{{ post.created|date:"m, d Y" }}</li>
+                                        <li><i class='bx bx-like'></i> {{ post.number_of_likes }}</li>
+                                        <li><i class='bx bx-comment'></i> {{ post.comments.all.count }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <p>{{ post.body|safe }}</p>
+                            <hr>
+                            <h5><i class='bx bxs-category' style="font-size: 24px"></i> <a
+                                    href="{% url 'post_list_category' post.category %}">{{ post.category }}</a> &nbsp;&nbsp;
+                                &nbsp;&nbsp;<i class='bx bx-purchase-tag-alt' style="font-size: 24px"></i>
+                                {% for tag in post.tags.all %}
+                                    <span style="font-weight: lighter"><a href="/"> #{{ tag }} &nbsp;</a> </span>
+                                {% endfor %}
+                            </h5>
+                            {% if user.is_authenticated %}
+                                {% if user not in post.likes.all %}
+                                    <button hx-post="{% url 'vlike-post' post.id %}" id="likes"
+                                            hx-swap="outerHTML"
+                                            class="btn btn-block btn-outline-secondary btn-lg mb-2 mx-auto"
+                                            name="post_id" value="{{ post.id }}"><i
+                                            class="fa fa-thumbs-up"> L i k e - {{ post.number_of_likes }}</i></button>
+                                {% else %}
+                                    <button class="btn btn-block btn-outline-secondary btn-lg mb-2 mx-auto disabled"><i
+                                            class="fa fa-thumbs-up"> L i k e - {{ post.number_of_likes }}</i></button>
+                                {% endif %}
+                            {% else %}
+                                <button class="btn btn-block btn-outline-secondary btn-lg mb-2 mx-auto"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalSignin"><i
+                                        class="fa fa-thumbs-up"> L i k e - {{ post.number_of_likes }}</i></button>
+                            {% endif %}
+
+
+                        </div>
+                        <div class="blog-author">
+                            <div class="author">
+                                <div class="author-thumb">
+                                    <img src="{{ post.author.avatar.url }}" width="90px" alt="Blog Author">
+                                </div>
+                                <div class="info">
+                                    <h5 class="title"><a>{{ post.author.full_name }}</a></h5>
+                                    <p>{{ post.author.bio }}.</p>
+                                    <ul class="social-share list-unstyled">
+                                        <li><a href="{{ post.author.telegram }}"><i class="fab fa-telegram"></i></a>
+                                        </li>
+                                        <li><a href="{{ post.author.instagram }}"><i class="fab fa-instagram"></i></a>
+                                        </li>
+                                        <li><a href="{{ post.author.youtube }}"><i class="fab fa-youtube"></i></a></li>
+                                        <li><a href="{{ post.author.github }}"><i class="fab fa-github"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="blog-comment mt-5" id="comment-section">
+                            <h3 class="section-title">Izohlar:</h3>
+                            <div class="comment-list">
+                                {% if post.video_comments.all.count != 0 %}
+                                    {% for comment in post.video_comments.all %}
+                                        <!-- Start Single Comment  -->
+                                        <div class="comment">
+                                            <div class="thumbnail">
+                                                <img src="https://img.freepik.com/free-vector/cool-monkey-holding-money-bag-cartoon-vector-icon-illustration-animal-finance-icon-concept-isolated-premium-vector-flat-cartoon-style_138676-3366.jpg"
+                                                     style="border-radius: 50%" width="100px" alt="Blog Comment">
+                                            </div>
+                                            <div class="content">
+                                                <div class="heading">
+                                                    <h5 class="title">{{ comment.author }}</h5>
+                                                </div>
+                                                <p>{{ comment.comment }}</p>
+                                            </div>
+                                        </div>
+                                        <!-- End Single Comment  -->
+                                    {% endfor %}
+                                {% else %}
+                                    <h5>Hozircha izohlar mavjud emas.</h5>
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+                        <div class="blog-comment-form">
+                            {% if user.is_authenticated %}
+                                <form method="post">{% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group mb--30">
+                                                <label>Izoh</label>
+                                                <textarea name="comment" id="id_comment" class="form-control textarea"
+                                                          cols="30" rows="4" placeholder="Izoh qoldiring"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <div class="form-group">
+                                                <button type="submit"
+                                                        class="axil-btn btn-fill-primary btn-fluid"
+                                                        name="submit-btn">Izoh qoldirish
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            {% else %}
+
+                                <h3 class="title">Izoh qoldirish uchun <a style="color: #5956E9; cursor: pointer"
+                                                                          data-bs-toggle="modal"
+                                                                          data-bs-target="#modalSignin">ro'yxatdan</a>
+                                    o'ting</h3>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <!-- Sidebar -->
+                {% include 'base/sidebar.html' %}
+                <!-- End sidebar -->
+            </div>
+        </div>
+    </section>
+{% endblock %}
