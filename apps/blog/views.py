@@ -15,37 +15,42 @@ def home(request):
     video_posts = VideoPost.objects.all()
     faq = Faq.objects.filter(active=True)
     categories = Category.objects.all()
-    if request.method == 'POST':
+    if request.method == "POST":
         emailform = EmailForm(request.POST)
         if emailform.is_valid():
-            email = emailform.cleaned_data['email']
+            email = emailform.cleaned_data["email"]
             path = f"{request.META.get('HTTP_REFERER')}"
             if Email.objects.filter(email=email).exists():
                 messages.info(request, "Hmm. Siz allaqachon a'zo bo'lgansiz 😊")
             else:
                 p = Email(email=email, created=datetime.now())
                 p.save()
-                messages.success(request, "Ajoyib! Email xabarnomaga muvaffaqiyatli a'zo bo'ldingiz 🤗")
+                messages.success(
+                    request,
+                    "Ajoyib! Email xabarnomaga muvaffaqiyatli a'zo bo'ldingiz 🤗",
+                )
             return HttpResponseRedirect(path)
     else:
         emailform = EmailForm()
     context = {
-        'left': left,
-        'right': right,
-        'video_posts': video_posts,
-        'faq': faq,
-        'categories': categories
+        "left": left,
+        "right": right,
+        "video_posts": video_posts,
+        "faq": faq,
+        "categories": categories,
     }
-    return render(request, 'index.html', context)
+    return render(request, "index.html", context)
 
 
 def post_list(request):
-    query = request.GET.get('qidirish')
+    query = request.GET.get("qidirish")
     if query:
-        posts = Post.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+        posts = Post.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        )
     else:
         posts = Post.objects.all()
-    page_num = request.GET.get('sahifa', 1)
+    page_num = request.GET.get("sahifa", 1)
     paginator = Paginator(posts, 1)
     try:
         posts = paginator.page(page_num)
@@ -54,15 +59,15 @@ def post_list(request):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
     context = {
-        'posts': posts,
+        "posts": posts,
     }
-    return render(request, 'blog.html', context)
+    return render(request, "blog.html", context)
 
 
 def post_list_category(request, category):
     category = get_object_or_404(Category, category=category)
     posts = Post.objects.filter(category=category)
-    page_num = request.GET.get('sahifa', 1)
+    page_num = request.GET.get("sahifa", 1)
     paginator = Paginator(posts, 1)
     try:
         posts = paginator.page(page_num)
@@ -70,16 +75,13 @@ def post_list_category(request, category):
         posts = paginator.page(1)
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
-    context = {
-        'posts': posts,
-        'category': category
-    }
-    return render(request, 'blog-category.html', context)
+    context = {"posts": posts, "category": category}
+    return render(request, "blog-category.html", context)
 
 
 def post_list_videos(request):
     posts = VideoPost.objects.all()
-    page_num = request.GET.get('sahifa', 1)
+    page_num = request.GET.get("sahifa", 1)
     paginator = Paginator(posts, 1)
     try:
         posts = paginator.page(page_num)
@@ -88,18 +90,20 @@ def post_list_videos(request):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
     context = {
-        'posts': posts,
+        "posts": posts,
     }
-    return render(request, 'blog-video.html', context)
+    return render(request, "blog-video.html", context)
 
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    if request.method == 'POST':
+    if request.method == "POST":
         form = CommentForm(request.POST)
         if form.is_valid():
-            comment = form.cleaned_data['comment']
-            p = Comment(post=post, author=request.user, comment=comment, created=datetime.now())
+            comment = form.cleaned_data["comment"]
+            p = Comment(
+                post=post, author=request.user, comment=comment, created=datetime.now()
+            )
             p.save()
     else:
         form = CommentForm()
@@ -107,18 +111,16 @@ def post_detail(request, slug):
     left = Post.objects.all()[0]
     right = Post.objects.all()[1]
     context = {
-        'post': post,
-        'form': form,
-        'related_posts': related_posts,
-        'left': left,
-        'right': right
+        "post": post,
+        "form": form,
+        "related_posts": related_posts,
+        "left": left,
+        "right": right,
     }
-    return render(request, 'single-blog.html', context)
+    return render(request, "single-blog.html", context)
 
 
 def video_post_detail(request, slug):
     post = get_object_or_404(VideoPost, slug=slug)
-    context = {
-        'post': post
-    }
-    return render(request, 'blog-video.html', context)
+    context = {"post": post}
+    return render(request, "blog-video.html", context)

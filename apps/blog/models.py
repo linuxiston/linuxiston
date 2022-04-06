@@ -6,7 +6,7 @@ from django.urls import reverse
 
 class Author(models.Model):
     full_name = models.CharField(max_length=50)
-    avatar = models.ImageField(upload_to='author-avatars')
+    avatar = models.ImageField(upload_to="author-avatars")
     bio = models.CharField(max_length=300)
     telegram = models.URLField()
     instagram = models.URLField()
@@ -21,8 +21,8 @@ class Category(models.Model):
     category = models.CharField(max_length=30)
 
     class Meta:
-        verbose_name = 'category'
-        verbose_name_plural = 'Categories'
+        verbose_name = "category"
+        verbose_name_plural = "Categories"
 
     def __str__(self):
         return self.category
@@ -32,8 +32,8 @@ class Tag(models.Model):
     tag = models.CharField(max_length=20)
 
     class Meta:
-        verbose_name = 'tag'
-        verbose_name_plural = 'Tags'
+        verbose_name = "tag"
+        verbose_name_plural = "Tags"
 
     def __str__(self):
         return self.tag
@@ -47,23 +47,23 @@ class Post(models.Model):
     description = models.CharField(max_length=300)
     body = RichTextField()
     created = models.DateTimeField(auto_now_add=True)
-    thumbnail = models.ImageField(upload_to='post-thumbnails')
-    likes = models.ManyToManyField(User, blank=True, related_name='likes')
+    thumbnail = models.ImageField(upload_to="post-thumbnails")
+    likes = models.ManyToManyField(User, blank=True, related_name="likes")
     slug = models.SlugField()
 
     def number_of_likes(self):
         return self.likes.count()
 
     def get_absolute_url(self):
-        return reverse('post_detail', args=[str(self.slug)])  # not created yet
+        return reverse("post_detail", args=[str(self.slug)])  # not created yet
 
     def __str__(self):
         return self.title
 
     class Meta:
-        ordering = ('-created',)
-        verbose_name = 'post'
-        verbose_name_plural = 'Blog posts'
+        ordering = ("-created",)
+        verbose_name = "post"
+        verbose_name_plural = "Blog posts"
 
 
 class VideoPost(models.Model):
@@ -75,53 +75,55 @@ class VideoPost(models.Model):
     description = models.CharField(max_length=300)
     body = RichTextField()
     created = models.DateTimeField(auto_now_add=True)
-    thumbnail = models.ImageField(upload_to='post-thumbnails')
-    likes = models.ManyToManyField(User, blank=True, related_name='vlikes')
+    thumbnail = models.ImageField(upload_to="post-thumbnails")
+    likes = models.ManyToManyField(User, blank=True, related_name="vlikes")
     slug = models.SlugField()
 
     def number_of_likes(self):
         return self.likes.count()
 
     def get_absolute_url(self):
-        return reverse('video_post_detail', args=[str(self.slug)])  # not created yet
+        return reverse("video_post_detail", args=[str(self.slug)])  # not created yet
 
     def __str__(self):
         return self.title
 
     class Meta:
-        ordering = ('-created',)
-        verbose_name = 'Video post'
-        verbose_name_plural = 'Video blog posts'
+        ordering = ("-created",)
+        verbose_name = "Video post"
+        verbose_name_plural = "Video blog posts"
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name="comments", on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.CharField(max_length=500)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.post) + ' + ' + str(self.created) + str(self.author)
+        return str(self.post) + " + " + str(self.created) + str(self.author)
 
     class Meta:
-        ordering = ('-created',)
-        verbose_name = 'comment'
-        verbose_name_plural = 'Comments'
+        ordering = ("-created",)
+        verbose_name = "comment"
+        verbose_name_plural = "Comments"
 
 
 class VideoComment(models.Model):
-    post = models.ForeignKey(VideoPost, related_name='video_comments', on_delete=models.CASCADE)
+    post = models.ForeignKey(
+        VideoPost, related_name="video_comments", on_delete=models.CASCADE
+    )
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.CharField(max_length=500)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.post) + ' + ' + str(self.created) + str(self.author)
+        return str(self.post) + " + " + str(self.created) + str(self.author)
 
     class Meta:
-        ordering = ('-created',)
-        verbose_name = 'video comment'
-        verbose_name_plural = 'Video Comments'
+        ordering = ("-created",)
+        verbose_name = "video comment"
+        verbose_name_plural = "Video Comments"
 
 
 # QA section
@@ -132,9 +134,9 @@ class Faq(models.Model):
     active = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name = 'Faq'
-        verbose_name_plural = 'FAQ'
-        ordering = ('-created',)
+        verbose_name = "Faq"
+        verbose_name_plural = "FAQ"
+        ordering = ("-created",)
 
     def __str__(self):
         return self.title
