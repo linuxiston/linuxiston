@@ -111,6 +111,8 @@ def post_detail(request, slug):
                 post=post, author=request.user, comment=comment, created=datetime.now()
             )
             p.save()
+            path = f"{post.get_absolute_url()}#comment-section"
+            return HttpResponseRedirect(path)
     else:
         form = CommentForm()
     related_posts = Post.objects.filter(category=post.category)

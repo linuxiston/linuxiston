@@ -98,7 +98,7 @@
                             </div>
 
                         </div>
-                        <div class="blog-comment mt-5">
+                        <div class="blog-comment mt-5" id="comment-section">
                             <h3 class="section-title">Izohlar:</h3>
                             <div class="comment-list">
                                 {% if post.comments.all.count != 0 %}
@@ -138,7 +138,8 @@
                                         </div>
                                         <div class="col-lg-5">
                                             <div class="form-group">
-                                                <button type="submit" class="axil-btn btn-fill-primary btn-fluid"
+                                                <button type="submit"
+                                                        class="axil-btn btn-fill-primary btn-fluid"
                                                         name="submit-btn">Izoh qoldirish
                                                 </button>
                                             </div>
