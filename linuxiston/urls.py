@@ -8,6 +8,7 @@ schema_view = get_swagger_view(title="Linuxiston API")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("accounts/", include("allauth.urls")),  # allauth
     path("api2", schema_view),
     path("", include("apps.blog.urls")),
 ]

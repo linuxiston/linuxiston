@@ -27,6 +27,11 @@ INSTALLED_APPS = [
 
 # third-party apps
 INSTALLED_APPS += [
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
     "rest_framework",
     "rest_framework_swagger",
     "ckeditor",
@@ -145,6 +150,10 @@ SIMPLE_JWT = {
 
 AUTH_USER_MODEL = "users.User"
 
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+SITE_ID = 2
+
 # MESSAGES
 from django.contrib.messages import constants as messages
 
@@ -154,4 +163,23 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'alert-success',
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
+}
+
+# For django allauth
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend'
+]
+
+# scope and other setting
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
 }
