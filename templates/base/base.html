@@ -50,13 +50,6 @@
 </head>
 
 <body class="sticky-header">
-<!--[if lte IE 9]>
-<p class="browserupgrade">
-    You are using an <strong>outdated</strong> browser. Please
-    <a href="https://browsehappy.com/">upgrade your browser</a> to improve
-    your experience and security.
-</p>
-<![endif]-->
 <a href="#main-wrapper" id="backto-top" class="back-to-top">
     <!-- <i class="far fa-angle-double-up"></i> -->
     <i class="fa-solid fa-angles-up"></i>
@@ -95,13 +88,13 @@
             <div class="container-fluid">
                 <div class="header-navbar">
                     <div class="header-logo">
-                        <a href="index-1.html"
+                        <a href="{% url 'home' %}"
                         ><img
                                 class="light-version-logo"
                                 src="{% static 'media/logo-2.svg' %}"
                                 alt="logo"
                         /></a>
-                        <a href="index-1.html"
+                        <a href="{% url 'home' %}"
                         ><img
                                 class="dark-version-logo"
                                 src="{% static 'media/logo-3.svg' %}"
@@ -203,7 +196,7 @@
                                                 class="setColor light"
                                                 data-theme="light"
                                         >
-                                            <i class="fal fa-lightbulb-on"></i>
+                                            <i class="bx bx-sun"></i>
                                         </a>
                                     </li>
                                     <li title="Dark Mode">
@@ -356,31 +349,31 @@
                                     <div class="footer-menu-link">
                                         <ul class="list-unstyled">
                                             <li>
-                                                <a href="service-design.html"
-                                                >Logo &amp; Branding</a
+                                                <a href="{% url 'home' %}"
+                                                >Bosh sahifa</a
                                                 >
                                             </li>
                                             <li>
                                                 <a href="service-development.html"
-                                                >Website Development</a
+                                                >Linux haqida</a
                                                 >
                                             </li>
                                             <li>
-                                                <a href="service-development.html"
-                                                >Mobile App Development</a
+                                                <a href="{% url 'post_list' %}"
+                                                >Maqolalar</a
                                                 >
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'post_list_videos' %}"
+                                                >Video darsliklar</a
+                                                >
+                                            </li>
+                                            <li>
+                                                <a href="service-marketing.html">Biz haqimizda</a>
                                             </li>
                                             <li>
                                                 <a href="service-marketing.html"
-                                                >Search Engine Optimization</a
-                                                >
-                                            </li>
-                                            <li>
-                                                <a href="service-marketing.html">Pay-Per-Click</a>
-                                            </li>
-                                            <li>
-                                                <a href="service-marketing.html"
-                                                >Social Media Marketing</a
+                                                >Aloqa</a
                                                 >
                                             </li>
                                         </ul>
@@ -389,28 +382,16 @@
                             </div>
                             <div class="col-sm-3">
                                 <div class="footer-widget">
-                                    <h6 class="widget-title">Resourses</h6>
+                                    <h6 class="widget-title">Manbalar</h6>
                                     <div class="footer-menu-link">
                                         <ul class="list-unstyled">
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="case-study.html">Case Studies</a></li>
-                                            <li><a href="portfolio.html">Portfolio</a></li>
+                                            <li><a href="https://fontawesome.com">Fontawesome</a></li>
+                                            <li><a href="https://boxicons.com">Boxicons</a></li>
+                                            <li><a href="/">Abstract</a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <!-- <div class="col-sm-3">
-                                          <div class="footer-widget">
-                                              <h6 class="widget-title">Support</h6>
-                                              <div class="footer-menu-link">
-                                                  <ul class="list-unstyled">
-                                                      <li><a href="contact.html">Contact</a></li>
-                                                      <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                                      <li><a href="terms-of-use.html">Terms of Use</a></li>
-                                                  </ul>
-                                              </div>
-                                          </div>
-                                      </div> -->
                         </div>
                     </div>
                 </div>
@@ -432,8 +413,8 @@
                     <div class="col-md-6">
                         <div class="footer-bottom-link">
                             <ul class="list-unstyled">
-                                <li><a href="/">Privacy Policy</a></li>
-                                <li><a href="/">Terms of Use</a></li>
+                                <li><a href="/">Xavfsizlik shartlari</a></li>
+                                <li><a href="/">Foydalanish shartlari</a></li>
                             </ul>
                         </div>
                     </div>
@@ -459,12 +440,12 @@
             ></button>
         </div>
         <div class="offcanvas-body">
-            <form action="#" class="side-nav-search-form">
+            <form action="{% url 'post_list' %}" method="get" class="side-nav-search-form">
                 <div class="form-group">
                     <input
                             type="text"
                             class="search-field"
-                            name="search-field"
+                            name="qidirish"
                             placeholder="Qidirish..."
                     />
                     <button class="side-nav-search-btn">
