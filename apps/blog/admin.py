@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Tag, Post, VideoPost, Comment, VideoComment, Author, Faq
+from .models import Category, Tag, Post, VideoPost, Comment, VideoComment, Author, Faq, Contact
 from apps.users.models import Email
 
 admin.site.register(Category)
@@ -30,3 +30,10 @@ class PostAdmin(admin.ModelAdmin):
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ["full_name", "telegram", "instagram", "youtube", "github"]
     search_fields = ["full_name"]
+
+
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'answered', 'sent')
+    list_filter = ('answered', 'sent')
+    search_fields = ('name', 'email')

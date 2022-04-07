@@ -147,7 +147,7 @@
                                 <li>
                                     <a href="about.html">Biz haqimizda</a>
                                 </li>
-                                <li><a href="contact.html">Aloqa</a></li>
+                                <li><a href="{% url 'contact' %}">Aloqa</a></li>
                                 <li>
                                     {% if user.is_authenticated %}
                                         <a style="color: #5956e9">{{ user }}</a>
@@ -372,7 +372,7 @@
                                                 <a href="service-marketing.html">Biz haqimizda</a>
                                             </li>
                                             <li>
-                                                <a href="service-marketing.html"
+                                                <a href="{% url 'contact' %}"
                                                 >Aloqa</a
                                                 >
                                             </li>

@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Author, Category, Tag, Post, VideoPost, Comment, VideoComment, Faq
+from .models import Author, Category, Tag, Post, VideoPost, Comment, VideoComment, Faq, Contact
 from apps.users.models import Email
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .forms import CommentForm, EmailForm, CommentVideForm
+from .forms import CommentForm, EmailForm, CommentVideForm, ContactForm
 from datetime import datetime
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
@@ -19,7 +19,6 @@ def add_video_like_post(request, pk):
     post = get_object_or_404(VideoPost, id=pk)
     post.likes.add(request.user)
     return HttpResponse("<h4 class='text-success'> 😍 </h4>")
-
 
 
 def home(request):
@@ -148,3 +147,16 @@ def post_video_detail(request, slug):
         "form": form,
     }
     return render(request, "single-video-blog.html", context)
+
+
+def contact(request):
+    if request.method == 'POST':
+        contact_form = ContactForm(request.POST)
+        if contact_form.is_valid():
+            name = contact_form.cleaned_data['name']
+            email = contact_form.cleaned_data['email']
+            message = contact_form.cleaned_data['message']
+            p = Contact(name=name, email=email, message=message, sent=datetime.now())
+    else:
+        contact_form = ContactForm()
+    return render(request, 'contact.html', {'contact_form': contact_form})

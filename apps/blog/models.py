@@ -140,3 +140,19 @@ class Faq(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=50)
+    email = models.EmailField()
+    message = models.TextField()
+    answered = models.BooleanField(default=False)
+    sent = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('-sent',)
+        verbose_name = 'contact'
+        verbose_name_plural = 'Contact'
+
+    def __str__(self):
+        return self.email
