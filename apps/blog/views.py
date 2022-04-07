@@ -157,6 +157,8 @@ def contact(request):
             email = contact_form.cleaned_data['email']
             message = contact_form.cleaned_data['message']
             p = Contact(name=name, email=email, message=message, sent=datetime.now())
+            p.save()
+            messages.success(request, "Xabaringiz yuborildi. Tez orada javob berishga harakat qilamiz")
     else:
         contact_form = ContactForm()
     return render(request, 'contact.html', {'contact_form': contact_form})
