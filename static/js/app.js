@@ -16,7 +16,7 @@
 
         methods: function (e) {
             axilInit.w();
-            axilInit.contactForm();
+            // axilInit.contactForm();
             axilInit.axilBackToTop();
             axilInit.stickyHeaderMenu();
             axilInit.mobileMenuActivation();
