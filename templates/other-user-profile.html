@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container d-flex justify-content-center align-items-center" style="height: 70vh">
+        <div class="card"
+             style="width: 380px; border: none;border-radius: 15px;padding: 8px;background-color: #fff; position: relative; height: 370px">
+            <div class="upper" style="height: 100px"><img src="https://i.imgur.com/Qtrsrk5.jpg" class="img-fluid"
+                                                          style="width: 100%;border-top-left-radius: 10px;border-top-right-radius: 10px">
+            </div>
+            <div class="user text-center" style="position: relative">
+                <div class="profile"
+                     style="position: absolute; top: -50px; left: 38%; height: 90px; width: 90px; border: 3px solid #fff; border-radius: 50%">
+                    <img style="height: 80px;width: 80px;margin-top: 2px" src="{{ cuser.socialaccount_set.all.0.get_avatar_url }}"
+                         class="rounded-circle" width="80"></div>
+            </div>
+            <div class="mt-5 text-center">
+                <h4 class="mb-0">{{ cuser.first_name }} {{ cuser.last_name }}</h4> <span class="text-muted d-block mb-2">{{ cuser.email }}</span>
+                <button class="btn btn-primary btn-sm follow"
+                        style="border-radius: 15px;padding-left: 20px; padding-right: 20px; height: 35px">Do'st bo'lish
+                </button>
+                <div class="d-flex justify-content-between align-items-center mt-4 px-4">
+                    <div class="stats">
+                        <h6 class="mb-0" title="Like bosgqan maqolalari">Like</h6> <span style="font-size: 29px">12</span>
+                    </div>
+                    <div class="stats">
+                        <h6 class="mb-0" title="Yozgan maqolalari">Maqolalar</h6> <span style="font-size: 29px">2</span>
+                    </div>
+                    <div class="stats">
+                        <h6 class="mb-0" title="Daraja">Olma</h6> <span style="font-size: 29px">129</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

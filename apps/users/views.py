@@ -5,8 +5,9 @@ from django.shortcuts import get_object_or_404
 
 def user_profile(request, username):
     user = get_object_or_404(User, username=username)
-    print(user.email)
     context = {
         'cuser': user
     }
-    return render(request, 'user-profile.html', context)
+    if user == request.user:
+        return render(request, 'user-profile.html', context)
+    return render(request, 'other-user-profile.html', context)

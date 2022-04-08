@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
     <!--=====================================-->
-    <!--=        Header Area Start       	=-->
+    <!--=        User Area Start       	=-->
     <!--=====================================-->
     <section class="container">
         <div class="row">
@@ -11,7 +11,7 @@
                 <div class="position-sticky top-0">
                     <div class="text-center pt-5">
                         <div class="d-table position-relative mx-auto mt-2 mt-lg-4 pt-5 mb-3">
-                            <img src="{% static 'media/birglaz.jpg' %}" class="d-block rounded-circle" alt="Bu men"
+                            <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" class="d-block rounded-circle" alt="Bu men"
                                  width="120">
                             <button type="button"
                                     class="btn btn-icon btn-light bg-white btn-sm border rounded-circle shadow-sm position-absolute bottom-0 end-0 mt-4"

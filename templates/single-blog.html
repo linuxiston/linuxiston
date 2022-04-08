@@ -106,7 +106,7 @@
                                         <!-- Start Single Comment  -->
                                         <div class="comment">
                                             <div class="thumbnail">
-                                                <img src="https://img.freepik.com/free-vector/cool-monkey-holding-money-bag-cartoon-vector-icon-illustration-animal-finance-icon-concept-isolated-premium-vector-flat-cartoon-style_138676-3366.jpg"
+                                                <img src="{{ comment.author.socialaccount_set.all.0.get_avatar_url }}"
                                                      style="border-radius: 50%" width="100px" alt="Blog Comment">
                                             </div>
                                             <div class="content">
