@@ -12,8 +12,8 @@ admin.site.register(Email)
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("title", "created", "category", "number_of_likes")
-    list_filter = ("category", "created")
+    list_display = ("title", "created", "category", "number_of_likes", "active")
+    list_filter = ("category", "created", "active")
     search_fields = ("title", "description")
     prepopulated_fields = {"slug": ("title",)}
 

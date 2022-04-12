@@ -2,9 +2,11 @@ from django.db import models
 from apps.users.models import User
 from ckeditor.fields import RichTextField
 from django.urls import reverse
-
+from django.utils.text import slugify
+from django.db.models.signals import post_save, pre_save
 
 class Author(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=50)
     avatar = models.ImageField(upload_to="author-avatars")
     bio = models.CharField(max_length=300)
@@ -50,6 +52,7 @@ class Post(models.Model):
     thumbnail = models.ImageField(upload_to="post-thumbnails")
     likes = models.ManyToManyField(User, blank=True, related_name="likes")
     slug = models.SlugField()
+    active = models.BooleanField(default=True)
 
     def number_of_likes(self):
         return self.likes.count()
@@ -64,6 +67,14 @@ class Post(models.Model):
         ordering = ("-created",)
         verbose_name = "post"
         verbose_name_plural = "Blog posts"
+
+
+def article_pre_save(sender, instance, *args, **kwargs):
+    if instance.slug is None:
+        instance.slug = slugify(instance.title)
+
+
+pre_save.connect(article_pre_save, sender=Post)
 
 
 class VideoPost(models.Model):
@@ -150,9 +161,9 @@ class Contact(models.Model):
     sent = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ('-sent',)
-        verbose_name = 'contact'
-        verbose_name_plural = 'Contact'
+        ordering = ("-sent",)
+        verbose_name = "contact"
+        verbose_name_plural = "Contact"
 
     def __str__(self):
         return self.email

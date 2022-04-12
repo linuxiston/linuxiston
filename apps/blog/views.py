@@ -3,10 +3,11 @@ from .models import Author, Category, Tag, Post, VideoPost, Comment, VideoCommen
 from apps.users.models import Email
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .forms import CommentForm, EmailForm, CommentVideForm, ContactForm
+from .forms import CommentForm, EmailForm, CommentVideForm, ContactForm, WritePostForm
 from datetime import datetime
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 def add_like_post(request, pk):
@@ -22,8 +23,8 @@ def add_video_like_post(request, pk):
 
 
 def home(request):
-    left = Post.objects.all()[0]
-    right = Post.objects.all()[1]
+    left = Post.objects.filter(active=True)[0]
+    right = Post.objects.filter(active=True)[1]
     video_posts = VideoPost.objects.all()
     faq = Faq.objects.filter(active=True)
     categories = Category.objects.all()
@@ -59,9 +60,9 @@ def post_list(request):
     if query:
         posts = Post.objects.filter(
             Q(title__icontains=query) | Q(description__icontains=query)
-        )
+        ).filter(active=True)
     else:
-        posts = Post.objects.all()
+        posts = Post.objects.filter(active=True)
     page_num = request.GET.get("sahifa", 1)
     paginator = Paginator(posts, 1)
     try:
@@ -78,7 +79,7 @@ def post_list(request):
 
 def post_list_category(request, category):
     category = get_object_or_404(Category, category=category)
-    posts = Post.objects.filter(category=category)
+    posts = Post.objects.filter(category=category).filter(active=True)
     page_num = request.GET.get("sahifa", 1)
     paginator = Paginator(posts, 1)
     try:
@@ -162,3 +163,25 @@ def contact(request):
     else:
         contact_form = ContactForm()
     return render(request, 'contact.html', {'contact_form': contact_form})
+
+@login_required()
+def write_post(request):
+    tags = Tag.objects.all()
+    if request.method == 'POST':
+        form = WritePostForm(request.POST, request.FILES)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.author = Author.objects.get(user=request.user)
+            obj.active = False
+            obj.save()
+            form._save_m2m()
+            messages.success(request, 'Maqolangiz admin larga yuborildi. Tez orqada javob olasiz')
+        else:
+            messages.warning(request, 'Kamchiliklarni tuzating')
+    else:
+        form = WritePostForm()
+    context = {
+        'form': form,
+        'tags': tags
+    }
+    return render(request, 'write-post.html', context)

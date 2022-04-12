@@ -12,7 +12,8 @@ from .views import (
     post_list_videos,
     add_like_post,
     add_video_like_post,
-    contact
+    contact,
+    write_post,
 )
 
 # app_name = "blogs"
@@ -31,12 +32,13 @@ urlpatterns = [
     path("maqolalar/<str:category>/", post_list_category, name="post_list_category"),
     path("maqola/<str:slug>/", post_detail, name="post_detail"),
     path("video/<str:slug>/", post_video_detail, name="video_post_detail"),
+    path("maqola-yozish/", write_post, name="write-post"),
     path("", home, name="home"),
     # User profile
-    path('profile/@<str:username>/', user_profile, name='user-profile'),
+    path("profile/@<str:username>/", user_profile, name="user-profile"),
 ]
 
 urlpatterns += [
-    path('like/post/<int:pk>/', add_like_post, name='like-post'),
-    path('like/videopost/<int:pk>/', add_video_like_post, name='vlike-post'),
+    path("like/post/<int:pk>/", add_like_post, name="like-post"),
+    path("like/videopost/<int:pk>/", add_video_like_post, name="vlike-post"),
 ]

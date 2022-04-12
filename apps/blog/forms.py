@@ -1,5 +1,5 @@
 from django import forms
-from .models import Comment, VideoComment, Contact
+from .models import Comment, VideoComment, Contact, Post
 from apps.users.models import Email
 
 
@@ -25,3 +25,11 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ('name', 'email', 'message')
+
+
+class WritePostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('category', 'tags', 'title', 'description', 'body', 'thumbnail')
+
+    category = forms.Select()

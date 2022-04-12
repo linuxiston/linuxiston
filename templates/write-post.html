@@ -1,0 +1,56 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+    <section class="section">
+        <div class="container">
+            <form method="post" enctype='multipart/form-data'>{% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group mb--30">
+                            <label>Maqola mavzusi</label>
+                            <input name="title" type="text" id="id_title" class="form-control textarea"
+                                   placeholder="Maqola mavzusi"></input>
+                        </div>
+                        <div class="form-group mb--30">
+                            <label>Bo'lim</label>
+                            <select id="id_category" name="category" class="form-control form-select">
+                                {% for cat in sidebar_cats %}
+                                    <option value="{{ cat.id }}">{{ cat }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group mb--30">
+                            <label>Teglarni belgilang</label>
+                            <select id="id_tags" name="tags" class="form-control form-select" multiple="">
+                                {% for tag in tags %}
+                                    <option value="{{ tag.id }}">#{{ tag }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group mb--30">
+                            <label>Maqola haqida</label>
+                            <input name="description" id="id_description" type="text" class="form-control textarea"
+                                   placeholder="Maqola mavzusi haqida qisqacha gapiring"></input>
+                        </div>
+                        <div class="form-group input-group-text mb--30">
+                            <input type="file" id="id_thumbnail" name="thumbnail" class="form-control"
+                                   placeholder="Maqola uchun rasm">
+                        </div>
+                        <div class="form-group mb--30">
+                            <label>Maqola</label>
+                            <textarea id="id_body" name="body" style="height: 400px">
+                            </textarea>
+                        </div>
+                        <div class="form-group mb--30">
+                            <label>Adminga yuborish</label>
+                            <button type="submit"
+                                    class="axil-btn btn-fill-primary btn-fluid"
+                                    name="submit-btn">Yuborish
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+{% endblock %}
