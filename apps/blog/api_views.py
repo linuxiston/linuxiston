@@ -1,12 +1,12 @@
-from django.shortcuts import render
 from rest_framework import viewsets
-
-from .models import Category, Post, Comment, Tag
+from .models import Category, Post, VideoPost, Comment, VideoComment, Tag
 
 from .serializers import (
     CategorySerializer,
     PostSerializer,
+    VideoPostSerializer,
     CommentSerializer,
+    VideCommentSerializer,
     TagSerializer,
 )
 
@@ -21,9 +21,19 @@ class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
 
 
+class VideoPostViewSet(viewsets.ModelViewSet):
+    queryset = VideoPost.objects.all()
+    serializer_class = VideoPostSerializer
+
+
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
+
+class VideoCommentViewSet(viewsets.ModelViewSet):
+    queryset = VideoComment.objects.all()
+    serializer_class = VideCommentSerializer
 
 
 class TagViewSet(viewsets.ModelViewSet):

@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .api_views import CategoryViewSet, PostViewSet, CommentViewSet, TagViewSet
+from .api_views import CategoryViewSet, PostViewSet, CommentViewSet, TagViewSet, VideoPostViewSet, VideoCommentViewSet
 from apps.users.views import user_profile
 from .views import (
     home,
@@ -22,7 +22,9 @@ from .views import (
 router = DefaultRouter()
 router.register("categories", CategoryViewSet)
 router.register("posts", PostViewSet)
+router.register("videoPosts", VideoPostViewSet)
 router.register("comments", CommentViewSet)
+router.register("videoComments", VideoCommentViewSet)
 router.register("tags", TagViewSet)
 
 urlpatterns = [
