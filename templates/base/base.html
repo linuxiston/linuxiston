@@ -602,9 +602,11 @@
 <script>
     tinymce.init({
         selector: '#id_body',
-        plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinymcespellchecker',
-        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+        menubar:false,
+        plugins: 'advcode image editimage linkchecker autolink lists link media mediaembed pageembed permanentpen fullscreen codesample code emoticons',
+        toolbar: 'bold italic underline link | codesample emoticons | numlist bullist | image editimage pageembed permanentpen | fullscreen code',
         toolbar_mode: 'floating',
+        fullscreen_native: true
     });
 </script>
 
