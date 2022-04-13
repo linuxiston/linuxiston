@@ -14,6 +14,7 @@ from .views import (
     add_video_like_post,
     contact,
     write_post,
+    about_us
 )
 
 # app_name = "blogs"
@@ -28,6 +29,7 @@ urlpatterns = [
     path("api/", include(router.urls)),  # API
     path("maqolalar/", post_list, name="post_list"),
     path("aloqa/", contact, name="contact"),
+    path("biz-haqimizda/", about_us, name="about"),
     path("videolar/", post_list_videos, name="post_list_videos"),
     path("maqolalar/<str:category>/", post_list_category, name="post_list_category"),
     path("maqola/<str:slug>/", post_detail, name="post_detail"),

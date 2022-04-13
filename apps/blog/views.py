@@ -27,7 +27,7 @@ def home(request):
     right = Post.objects.filter(active=True)[1]
     video_posts = VideoPost.objects.all()
     faq = Faq.objects.filter(active=True)
-    categories = Category.objects.all()
+    categories = Category.objects.all()[:5]
     if request.method == "POST":
         emailform = EmailForm(request.POST)
         if emailform.is_valid():
@@ -185,3 +185,7 @@ def write_post(request):
         'tags': tags
     }
     return render(request, 'write-post.html', context)
+
+
+def about_us(request):
+    return render(request, 'about.html')
