@@ -37,7 +37,7 @@
                             </div>
                             <div class="author">
                                 <div class="author-thumb">
-                                    <img src="{{ post.author.avatar.url }}" width="80px" style="border-radius: 50%"
+                                    <img src="{{ post.author.image }}" width="80px" style="border-radius: 50%"
                                          alt="Blog Author">
                                 </div>
                                 <div class="info">
@@ -81,7 +81,7 @@
                         <div class="blog-author">
                             <div class="author">
                                 <div class="author-thumb">
-                                    <img src="{{ post.author.avatar.url }}" width="90px" alt="Blog Author">
+                                    <img src="{{ post.author.image }}" width="90px" alt="Blog Author">
                                 </div>
                                 <div class="info">
                                     <h5 class="title"><a>{{ post.author.full_name }}</a></h5>
@@ -106,7 +106,7 @@
                                         <!-- Start Single Comment  -->
                                         <div class="comment">
                                             <div class="thumbnail">
-                                                <img src="{{ comment.author.socialaccount_set.all.0.get_avatar_url }}"
+                                                <img src="{{ comment.author.image }}"
                                                      style="border-radius: 50%" width="100px" alt="Blog Comment">
                                             </div>
                                             <div class="content">

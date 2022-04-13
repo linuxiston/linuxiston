@@ -9,7 +9,7 @@
         <div class="container">
             <div class="breadcrumb">
                 <ul class="list-unstyled">
-                    <li><a href="index-1.html">Bosh sahifa</a></li>
+                    <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
                     <li class="active">Maqolalar</li>
                 </ul>
                 <h1 class="title h2">Maqolalar</h1>
@@ -37,7 +37,7 @@
                             <h3 class="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
                             <div class="author">
                                 <div class="author-thumb">
-                                    <img src="{{ post.author.avatar.url }}" width="75px" style="border-radius: 50%"
+                                    <img src="{{ post.author.image }}" width="75px" style="border-radius: 50%"
                                          alt="Blog Author">
                                 </div>
                                 <div class="info">

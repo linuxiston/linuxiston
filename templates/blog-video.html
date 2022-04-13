@@ -6,7 +6,7 @@
         <div class="container">
             <div class="breadcrumb">
                 <ul class="list-unstyled">
-                    <li><a href="index-1.html">Bosh sahifa</a></li>
+                    <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
                     <li class="active">Video darsliklar</li>
                 </ul>
                 <h1 class="title h2">Video darsliklar</h1>
@@ -35,7 +35,7 @@
                             </h3>
                             <div class="author">
                                 <div class="author-thumb">
-                                    <img src="{{ post.author.avatar.url }}" width="75px" style="border-radius: 50%" alt="Blog Author">
+                                    <img src="{{ post.author.image }}" width="75px" style="border-radius: 50%" alt="Blog Author">
                                 </div>
                                 <div class="info">
                                     <h6 class="author-name">{{ post.author.full_name }}</h6>

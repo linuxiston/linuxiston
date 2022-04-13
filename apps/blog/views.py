@@ -64,7 +64,7 @@ def post_list(request):
     else:
         posts = Post.objects.filter(active=True)
     page_num = request.GET.get("sahifa", 1)
-    paginator = Paginator(posts, 1)
+    paginator = Paginator(posts, 4)
     try:
         posts = paginator.page(page_num)
     except PageNotAnInteger:
@@ -81,7 +81,7 @@ def post_list_category(request, category):
     category = get_object_or_404(Category, category=category)
     posts = Post.objects.filter(category=category).filter(active=True)
     page_num = request.GET.get("sahifa", 1)
-    paginator = Paginator(posts, 1)
+    paginator = Paginator(posts, 4)
     try:
         posts = paginator.page(page_num)
     except PageNotAnInteger:
@@ -95,7 +95,7 @@ def post_list_category(request, category):
 def post_list_videos(request):
     posts = VideoPost.objects.all()
     page_num = request.GET.get("sahifa", 1)
-    paginator = Paginator(posts, 1)
+    paginator = Paginator(posts, 4)
     try:
         posts = paginator.page(page_num)
     except PageNotAnInteger:

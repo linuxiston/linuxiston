@@ -1,49 +1,28 @@
 {% load static %} {% load socialaccount %}
 <!DOCTYPE html>
 <html class="no-js" lang="en">
+
 <head>
     <!-- Meta Data -->
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title>Linuxiston | Linuxchilar oilasi</title>
     <meta name="description" content=""/>
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <!-- Font awesome -->
     <!-- <script src="https://kit.fontawesome.com/ad3e1a2d5f.js" crossorigin="anonymous"></script> -->
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
     <!-- Boxicons CSS -->
-    <link
-            href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
-            rel="stylesheet"
-    />
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
     <!-- Favicon -->
-    <link
-            rel="shortcut icon"
-            type="image/x-icon"
-            href="{% static 'media/favicon.png' %}"
-    />
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'media/favicon.png' %}"/>
     <link rel="stylesheet" href="{% static 'css/vendor/bootstrap.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/vendor/slick.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/vendor/slick-theme.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/vendor/sal.css' %}"/>
-    <link
-            rel="stylesheet"
-            href="{% static 'css/vendor/magnific-popup.css' %}"
-    />
-    <link
-            rel="stylesheet"
-            href="{% static 'css/vendor/green-audio-player.min.css' %}"
-    />
-    <link
-            rel="stylesheet"
-            href="{% static 'css/vendor/odometer-theme-default.css' %}"
-    />
+    <link rel="stylesheet" href="{% static 'css/vendor/magnific-popup.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/vendor/green-audio-player.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/vendor/odometer-theme-default.css' %}"/>
     <!-- Site Stylesheet -->
     <link rel="stylesheet" href="{% static 'css/app.css' %}"/>
     <!-- Quill editor -->
@@ -64,11 +43,7 @@
 <div class="my_switcher d-none d-lg-block">
     <ul>
         <li title="Light Mode">
-            <a
-                    href="javascript:void(0)"
-                    class="setColor light"
-                    data-theme="light"
-            >
+            <a href="javascript:void(0)" class="setColor light" data-theme="light">
                 <i class="bx bx-sun" style="color: white; font-size: 22px"></i>
             </a>
         </li>
@@ -90,18 +65,10 @@
             <div class="container-fluid">
                 <div class="header-navbar">
                     <div class="header-logo">
-                        <a href="{% url 'home' %}"
-                        ><img
-                                class="light-version-logo"
-                                src="{% static 'media/logo-2.svg' %}"
-                                alt="logo"
-                        /></a>
-                        <a href="{% url 'home' %}"
-                        ><img
-                                class="dark-version-logo"
-                                src="{% static 'media/logo-3.svg' %}"
-                                alt="logo"
-                        /></a>
+                        <a href="{% url 'home' %}"><img class="light-version-logo"
+                                                        src="{% static 'media/logo-2.svg' %}" alt="logo"/></a>
+                        <a href="{% url 'home' %}"><img class="dark-version-logo"
+                                                        src="{% static 'media/logo-3.svg' %}" alt="logo"/></a>
                     </div>
                     <div class="header-main-nav">
                         <!-- Start Mainmanu Nav -->
@@ -110,39 +77,26 @@
                                 <div class="mobile-nav-header">
                                     <div class="mobile-nav-logo">
                                         <a href="{% url 'home' %}">
-                                            <img
-                                                    class="light-mode"
-                                                    src="{% static 'media/logo-2.svg' %}"
-                                                    alt="Site Logo"
-                                            />
-                                            <img
-                                                    class="dark-mode"
-                                                    src="{% static 'media/logo-3.svg' %}"
-                                                    alt="Site Logo"
-                                            />
+                                            <img class="light-mode" src="{% static 'media/logo-2.svg' %}"
+                                                 alt="Site Logo"/>
+                                            <img class="dark-mode" src="{% static 'media/logo-3.svg' %}"
+                                                 alt="Site Logo"/>
                                         </a>
                                     </div>
-                                    <button
-                                            class="mobile-menu-close"
-                                            data-bs-dismiss="offcanvas"
-                                    >
+                                    <button class="mobile-menu-close" data-bs-dismiss="offcanvas">
                                         <i class="fas fa-times"></i>
                                     </button>
                                 </div>
                             </div>
                             <ul class="mainmenu">
                                 <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
-                                <li><a href="{% url 'write-post' %}">Maqola yozish</a></li>
                                 <li class="menu-item-has-children">
-                                    <a href="javascript:void(0);"
-                                    >Blog &nbsp;<i class="fa-solid fa-angle-down"></i
-                                    ></a>
+                                    <a href="javascript:void(0);">Blog &nbsp;<i
+                                            class="fa-solid fa-angle-down"></i></a>
                                     <ul class="axil-submenu">
                                         <li><a href="{% url 'post_list' %}">Maqolalar</a></li>
                                         <li>
-                                            <a href="{% url 'post_list_videos' %}"
-                                            >Video darsliklar</a
-                                            >
+                                            <a href="{% url 'post_list_videos' %}">Video darsliklar</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -150,19 +104,31 @@
                                     <a href="about.html">Biz haqimizda</a>
                                 </li>
                                 <li><a href="{% url 'contact' %}">Aloqa</a></li>
-                                <li>
-                                    {% if user.is_authenticated %}
-                                        <a href="{% url 'user-profile' user.username %}"
-                                           style="color: #5956e9">{{ user }}</a>
-                                    {% else %}
-                                        <a
-                                                style="color: #5956e9; cursor: pointer"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#modalSignin"
-                                        >Kirish</a
-                                        >
-                                    {% endif %}
-                                </li>
+
+                                {% if user.is_authenticated %}
+                                    <li class="menu-item-has-children">
+                                        <a href="javascript:void(0);" style="color: #5956e9">{{ user }} &nbsp;<i
+                                                class="fa-solid fa-angle-down"></i></a>
+                                        <ul class="axil-submenu">
+                                            <li><a href="{% url 'user-profile' user.username %}">Kabinet</a></li>
+                                            <li>
+                                                <a href="{% url 'write-post' %}">Maqola yozish</a>
+                                            </li>
+                                            <li>
+                                                <div class="dropdown-divider"></div>
+                                            </li>
+                                            <li>
+                                                <a href="{% url 'logout' %}" class="text-danger">Chiqish</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a style="color: #5956e9; cursor: pointer" data-bs-toggle="modal"
+                                           data-bs-target="#modalSignin">Kirish</a>
+                                    </li>
+                                {% endif %}
+
                             </ul>
                         </nav>
                         <!-- End Mainmanu Nav -->
@@ -170,22 +136,16 @@
                     <div class="header-action">
                         <ul class="list-unstyled">
                             <li class="sidemenu-btn d-lg-block d-none">
-                                <button
-                                        class="btn-wrap btn-dark"
-                                        data-bs-toggle="offcanvas"
-                                        data-bs-target="#offcanvasMenuRight"
-                                >
+                                <button class="btn-wrap btn-dark" data-bs-toggle="offcanvas"
+                                        data-bs-target="#offcanvasMenuRight">
                                     <span></span>
                                     <span></span>
                                     <span></span>
                                 </button>
                             </li>
                             <li class="mobile-menu-btn sidemenu-btn d-lg-none d-block">
-                                <button
-                                        class="btn-wrap btn-dark"
-                                        data-bs-toggle="offcanvas"
-                                        data-bs-target="#mobilemenu-popup"
-                                >
+                                <button class="btn-wrap btn-dark" data-bs-toggle="offcanvas"
+                                        data-bs-target="#mobilemenu-popup">
                                     <span></span>
                                     <span></span>
                                     <span></span>
@@ -194,20 +154,12 @@
                             <li class="my_switcher d-block d-lg-none">
                                 <ul>
                                     <li title="Light Mode">
-                                        <a
-                                                href="javascript:void(0)"
-                                                class="setColor light"
-                                                data-theme="light"
-                                        >
+                                        <a href="javascript:void(0)" class="setColor light" data-theme="light">
                                             <i class="bx bx-sun"></i>
                                         </a>
                                     </li>
                                     <li title="Dark Mode">
-                                        <a
-                                                href="javascript:void(0)"
-                                                class="setColor dark"
-                                                data-theme="dark"
-                                        >
+                                        <a href="javascript:void(0)" class="setColor dark" data-theme="dark">
                                             <i class="fas fa-moon"></i>
                                         </a>
                                     </li>
@@ -233,88 +185,44 @@
                 <div class="footer-social-link">
                     <ul class="list-unstyled">
                         <li>
-                            <a
-                                    href="https://facebook.com/"
-                                    data-sal="slide-up"
-                                    data-sal-duration="500"
-                                    data-sal-delay="100"
-                            ><i class="fab fa-facebook-f"></i
-                            ></a>
+                            <a href="https://facebook.com/" data-sal="slide-up" data-sal-duration="500"
+                               data-sal-delay="100"><i class="fab fa-facebook-f"></i></a>
                         </li>
                         <li>
-                            <a
-                                    href="https://twitter.com/"
-                                    data-sal="slide-up"
-                                    data-sal-duration="500"
-                                    data-sal-delay="200"
-                            ><i class="fab fa-twitter"></i
-                            ></a>
+                            <a href="https://twitter.com/" data-sal="slide-up" data-sal-duration="500"
+                               data-sal-delay="200"><i class="fab fa-twitter"></i></a>
                         </li>
                         <li>
-                            <a
-                                    href="https://www.pinterest.com/"
-                                    data-sal="slide-up"
-                                    data-sal-duration="500"
-                                    data-sal-delay="300"
-                            ><i class="fab fa-pinterest-p"></i
-                            ></a>
+                            <a href="https://www.pinterest.com/" data-sal="slide-up" data-sal-duration="500"
+                               data-sal-delay="300"><i class="fab fa-pinterest-p"></i></a>
                         </li>
                         <li>
-                            <a
-                                    href="https://www.linkedin.com/"
-                                    data-sal="slide-up"
-                                    data-sal-duration="500"
-                                    data-sal-delay="400"
-                            ><i class="fab fa-linkedin-in"></i
-                            ></a>
+                            <a href="https://www.linkedin.com/" data-sal="slide-up" data-sal-duration="500"
+                               data-sal-delay="400"><i class="fab fa-linkedin-in"></i></a>
                         </li>
                         <li>
-                            <a
-                                    href="https://www.instagram.com/"
-                                    data-sal="slide-up"
-                                    data-sal-duration="500"
-                                    data-sal-delay="500"
-                            ><i class="fab fa-instagram"></i
-                            ></a>
+                            <a href="https://www.instagram.com/" data-sal="slide-up" data-sal-duration="500"
+                               data-sal-delay="500"><i class="fab fa-instagram"></i></a>
                         </li>
                         <li>
-                            <a
-                                    href="https://vimeo.com/"
-                                    data-sal="slide-up"
-                                    data-sal-duration="500"
-                                    data-sal-delay="600"
-                            ><i class="fab fa-vimeo-v"></i
-                            ></a>
+                            <a href="https://vimeo.com/" data-sal="slide-up" data-sal-duration="500"
+                               data-sal-delay="600"><i class="fab fa-vimeo-v"></i></a>
                         </li>
                         <li>
-                            <a
-                                    href="https://dribbble.com/"
-                                    data-sal="slide-up"
-                                    data-sal-duration="500"
-                                    data-sal-delay="700"
-                            ><i class="fab fa-dribbble"></i
-                            ></a>
+                            <a href="https://dribbble.com/" data-sal="slide-up" data-sal-duration="500"
+                               data-sal-delay="700"><i class="fab fa-dribbble"></i></a>
                         </li>
                         <li>
-                            <a
-                                    href="https://www.behance.net/"
-                                    data-sal="slide-up"
-                                    data-sal-duration="500"
-                                    data-sal-delay="800"
-                            ><i class="fab fa-behance"></i
-                            ></a>
+                            <a href="https://www.behance.net/" data-sal="slide-up" data-sal-duration="500"
+                               data-sal-delay="800"><i class="fab fa-behance"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="footer-main">
                 <div class="row">
-                    <div
-                            class="col-xl-6 col-lg-5"
-                            data-sal="slide-right"
-                            data-sal-duration="800"
-                            data-sal-delay="100"
-                    >
+                    <div class="col-xl-6 col-lg-5" data-sal="slide-right" data-sal-duration="800"
+                         data-sal-delay="100">
                         <div class="footer-widget border-end">
                             <div class="footer-newsletter">
                                 <h2 class="title">Obuna bo'ling</h2>
@@ -325,13 +233,8 @@
                                 <form action="{% url 'home' %}" method="post">
                                     {% csrf_token %}
                                     <div class="input-group">
-                                        <input
-                                                type="email"
-                                                class="form-control"
-                                                name="email"
-                                                id="id_email"
-                                                placeholder="Email manzil"
-                                        />
+                                        <input type="email" class="form-control" name="email" id="id_email"
+                                               placeholder="Email manzil"/>
                                         <button class="subscribe-btn" type="submit">
                                             A'zo bo'lish
                                         </button>
@@ -340,12 +243,8 @@
                             </div>
                         </div>
                     </div>
-                    <div
-                            class="col-xl-6 col-lg-7"
-                            data-sal="slide-left"
-                            data-sal-duration="800"
-                            data-sal-delay="100"
-                    >
+                    <div class="col-xl-6 col-lg-7" data-sal="slide-left" data-sal-duration="800"
+                         data-sal-delay="100">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="footer-widget">
@@ -353,32 +252,22 @@
                                     <div class="footer-menu-link">
                                         <ul class="list-unstyled">
                                             <li>
-                                                <a href="{% url 'home' %}"
-                                                >Bosh sahifa</a
-                                                >
+                                                <a href="{% url 'home' %}">Bosh sahifa</a>
                                             </li>
                                             <li>
-                                                <a href="service-development.html"
-                                                >Linux haqida</a
-                                                >
+                                                <a href="service-development.html">Linux haqida</a>
                                             </li>
                                             <li>
-                                                <a href="{% url 'post_list' %}"
-                                                >Maqolalar</a
-                                                >
+                                                <a href="{% url 'post_list' %}">Maqolalar</a>
                                             </li>
                                             <li>
-                                                <a href="{% url 'post_list_videos' %}"
-                                                >Video darsliklar</a
-                                                >
+                                                <a href="{% url 'post_list_videos' %}">Video darsliklar</a>
                                             </li>
                                             <li>
                                                 <a href="service-marketing.html">Biz haqimizda</a>
                                             </li>
                                             <li>
-                                                <a href="{% url 'contact' %}"
-                                                >Aloqa</a
-                                                >
+                                                <a href="{% url 'contact' %}">Aloqa</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -400,18 +289,11 @@
                     </div>
                 </div>
             </div>
-            <div
-                    class="footer-bottom"
-                    data-sal="slide-up"
-                    data-sal-duration="500"
-                    data-sal-delay="100"
-            >
+            <div class="footer-bottom" data-sal="slide-up" data-sal-duration="500" data-sal-delay="100">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="footer-copyright">
-                  <span class="copyright-text"
-                  >© 2022. Barcha huquqlar himoyalangan</span
-                  >
+                            <span class="copyright-text">© 2022. Barcha huquqlar himoyalangan</span>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -430,28 +312,14 @@
     <!--=====================================-->
     <!--=       Offcanvas Menu Area       	=-->
     <!--=====================================-->
-    <div
-            class="offcanvas offcanvas-end header-offcanvasmenu"
-            tabindex="-1"
-            id="offcanvasMenuRight"
-    >
+    <div class="offcanvas offcanvas-end header-offcanvasmenu" tabindex="-1" id="offcanvasMenuRight">
         <div class="offcanvas-header">
-            <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="offcanvas"
-                    aria-label="Close"
-            ></button>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
             <form action="{% url 'post_list' %}" method="get" class="side-nav-search-form">
                 <div class="form-group">
-                    <input
-                            type="text"
-                            class="search-field"
-                            name="qidirish"
-                            placeholder="Qidirish..."
-                    />
+                    <input type="text" class="search-field" name="qidirish" placeholder="Qidirish..."/>
                     <button class="side-nav-search-btn">
                         <i class="bx bx-search-alt-2" style="font-size: 26px"></i>
                     </button>
@@ -469,15 +337,10 @@
                                 </p>
                             </address>
                             <address class="address">
-                    <span class="title"
-                    >Xohlagan payt murojat qiling 24/7.</span
-                    >
-                                <a class="tel" href="tel:8884562790"
-                                ><i class="fas fa-phone"></i>(998) 93-999-9999</a
-                                >
-                                <a class="tel" href="tel:12125553333"
-                                ><i class="fas fa-fax"></i>(998) 255-53333</a
-                                >
+                                <span class="title">Xohlagan payt murojat qiling 24/7.</span>
+                                <a class="tel" href="tel:8884562790"><i class="fas fa-phone"></i>(998)
+                                    93-999-9999</a>
+                                <a class="tel" href="tel:12125553333"><i class="fas fa-fax"></i>(998) 255-53333</a>
                             </address>
                         </div>
                         <div class="contact-inner">
@@ -485,24 +348,16 @@
                             <div class="contact-social-share">
                                 <ul class="social-share list-unstyled">
                                     <li>
-                                        <a href="https://facebook.com/"
-                                        ><i class="fab fa-facebook-f"></i
-                                        ></a>
+                                        <a href="https://facebook.com/"><i class="fab fa-facebook-f"></i></a>
                                     </li>
                                     <li>
-                                        <a href="https://twitter.com/"
-                                        ><i class="fab fa-twitter"></i
-                                        ></a>
+                                        <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
                                     </li>
                                     <li>
-                                        <a href="https://www.behance.net/"
-                                        ><i class="fab fa-behance"></i
-                                        ></a>
+                                        <a href="https://www.behance.net/"><i class="fab fa-behance"></i></a>
                                     </li>
                                     <li>
-                                        <a href="https://www.linkedin.com/"
-                                        ><i class="fab fa-linkedin-in"></i
-                                        ></a>
+                                        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
                                     </li>
                                 </ul>
                             </div>
@@ -521,42 +376,23 @@
             <div class="modal-header p-5 pb-4 border-bottom-0">
                 <!-- <h5 class="modal-title">Modal title</h5> -->
                 <h2 class="fw-bold mb-0">Kirish</h2>
-                <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                ></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body p-5 pt-0">
-                <small class="text-muted"
-                >Kirish tugmasini bosish orqali barcha xavfsizlik shartlarimizga
-                    rozi bo'lasiz.</small
-                >
+                <small class="text-muted">Kirish tugmasini bosish orqali barcha xavfsizlik shartlarimizga
+                    rozi bo'lasiz.</small>
                 <hr class="my-4"/>
-                <form
-                        action="{% provider_login_url 'google' %}?next={{ request.path }}"
-                        method="post"
-                >
+                <form action="{% provider_login_url 'google' %}?next={{ request.path }}" method="post">
                     {% csrf_token %}
-                    <button
-                            class="w-100 py-2 mb-2 btn btn-outline-dark rounded-4"
-                            type="submit"
-                            href="{% provider_login_url 'google' %}"
-                    >
+                    <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-4" type="submit"
+                            href="{% provider_login_url 'google' %}">
                         <i class="fa-brands fa-google"></i>&nbsp; Google orqali kirish
                     </button>
                 </form>
-                <form
-                        action="{% provider_login_url 'github' %}?next={{ request.path }}"
-                        method="post"
-                >
+                <form action="{% provider_login_url 'github' %}?next={{ request.path }}" method="post">
                     {% csrf_token %}
-                    <button
-                            class="w-100 py-2 mb-2 btn btn-outline-primary rounded-4"
-                            href="{% provider_login_url 'github' %}?next={{ request.path }}"
-                            type="submit"
-                    >
+                    <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-4"
+                            href="{% provider_login_url 'github' %}?next={{ request.path }}" type="submit">
                         <i class="fa-brands fa-github"></i>&nbsp; GitHub orqali kirish
                     </button>
                 </form>
@@ -602,7 +438,7 @@
 <script>
     tinymce.init({
         selector: '#id_body',
-        menubar:false,
+        menubar: false,
         plugins: 'advcode image editimage linkchecker autolink lists link media mediaembed pageembed permanentpen fullscreen codesample code emoticons',
         toolbar: 'bold italic underline link | codesample emoticons | numlist bullist | image editimage pageembed permanentpen | fullscreen code',
         toolbar_mode: 'floating',
@@ -611,4 +447,5 @@
 </script>
 
 </body>
+
 </html>

@@ -14,11 +14,14 @@ class User(AbstractUser):
         return f"{self.first_name} {self.last_name}"
 
     def image(self):
-        if self.socialaccount_set.filter(provider='google'):
-            url = self.socialaccount_set.filter(provider='google')[0].extra_data['picture']
+        if self.avatar:
+            return self.avatar.url
         else:
-            url = self.socialaccount_set.filter(provider='github')[0].extra_data['avatar_url']
-        return url
+            if self.socialaccount_set.filter(provider='google'):
+                url = self.socialaccount_set.filter(provider='google')[0].extra_data['picture']
+            else:
+                url = self.socialaccount_set.filter(provider='github')[0].extra_data['avatar_url']
+            return url
 
 
 class Email(models.Model):
