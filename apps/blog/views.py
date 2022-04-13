@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Author, Category, Tag, Post, VideoPost, Comment, VideoComment, Faq, Contact
+from .models import Category, Tag, Post, VideoPost, Comment, VideoComment, Faq, Contact
 from apps.users.models import Email
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -171,7 +171,7 @@ def write_post(request):
         form = WritePostForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save(commit=False)
-            obj.author = Author.objects.get(user=request.user)
+            obj.author = request.user
             obj.active = False
             obj.save()
             form._save_m2m()

@@ -5,19 +5,6 @@ from django.urls import reverse
 from django.utils.text import slugify
 from django.db.models.signals import post_save, pre_save
 
-class Author(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=50)
-    avatar = models.ImageField(upload_to="author-avatars")
-    bio = models.CharField(max_length=300)
-    telegram = models.URLField()
-    instagram = models.URLField()
-    youtube = models.URLField()
-    github = models.URLField()
-
-    def __str__(self):
-        return self.full_name
-
 
 class Category(models.Model):
     category = models.CharField(max_length=30)
@@ -44,7 +31,7 @@ class Tag(models.Model):
 class Post(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     tags = models.ManyToManyField(Tag)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=300)
     body = RichTextField()
@@ -80,7 +67,7 @@ pre_save.connect(article_pre_save, sender=Post)
 class VideoPost(models.Model):
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     tags = models.ManyToManyField(Tag)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     video_url = models.URLField()
     description = models.CharField(max_length=300)

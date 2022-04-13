@@ -11,7 +11,7 @@ class User(AbstractUser):
     github = models.URLField(null=True, blank=True, default='#')
 
     def full_name(self):
-        return self.first_name + ' ', self.last_name
+        return f"{self.first_name} {self.last_name}"
 
     def image(self):
         if self.socialaccount_set.filter(provider='google'):
