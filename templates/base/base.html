@@ -594,22 +594,17 @@
     })
 </script>
 
-<!-- Include the Quill library -->
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<!-- Include the Tiny library -->
+<script src="https://cdn.tiny.cloud/1/5t09go97322slefey8calgqfku0215bfj4co52krbeyiynas/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
 
-<!-- Initialize Quill editor -->
+<!-- Initialize Tiny editor -->
 <script>
-    var quill = new Quill('#id_body', {
-        modules: {
-            toolbar: [
-                [{header: [1, 2, false]}],
-                ['bold', 'italic', 'underline'],
-                ['link', 'code-block', 'blockquote'], <!-- Image removed due to safety -->
-                [{list: 'ordered'}, {list: 'bullet'}]
-            ]
-        },
-        placeholder: 'Maqolayizni yozing...',
-        theme: 'snow'  // or 'bubble'
+    tinymce.init({
+        selector: '#id_body',
+        plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+        toolbar_mode: 'floating',
     });
 </script>
 
