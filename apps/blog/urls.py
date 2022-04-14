@@ -1,7 +1,8 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .api_views import CategoryViewSet, PostViewSet, CommentViewSet, TagViewSet, VideoPostViewSet, VideoCommentViewSet
+from .api_views import CategoryViewSet, PostViewSet, CommentViewSet, TagViewSet, VideoPostViewSet, VideoCommentViewSet, \
+    UserViewSet
 from apps.users.views import user_profile
 from .views import (
     home,
@@ -29,6 +30,7 @@ router.register("videoPosts", VideoPostViewSet)
 router.register("comments", CommentViewSet)
 router.register("videoComments", VideoCommentViewSet)
 router.register("tags", TagViewSet)
+router.register("users", UserViewSet)
 
 urlpatterns = [
     path("api/", include(router.urls)),  # API
