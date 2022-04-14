@@ -1,8 +1,16 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .api_views import CategoryViewSet, PostViewSet, CommentViewSet, TagViewSet, VideoPostViewSet, VideoCommentViewSet, \
-    UserViewSet
+from .api_views import (
+    CategoryViewSet,
+    PostViewSet,
+    CommentViewSet,
+    TagViewSet,
+    VideoPostViewSet,
+    VideoCommentViewSet,
+    UserViewSet,
+    FaqViewSet,
+)
 from apps.users.views import user_profile
 from .views import (
     home,
@@ -18,7 +26,7 @@ from .views import (
     about_us,
     liked_posts,
     liked_video_posts,
-    user_posts
+    user_posts,
 )
 
 # app_name = "blogs"
@@ -30,6 +38,7 @@ router.register("videoPosts", VideoPostViewSet)
 router.register("comments", CommentViewSet)
 router.register("videoComments", VideoCommentViewSet)
 router.register("tags", TagViewSet)
+router.register("faq", FaqViewSet)
 router.register("users", UserViewSet)
 
 urlpatterns = [

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Category, Comment, Post, Tag, VideoPost, VideoComment
+from .models import Category, Comment, Post, Tag, VideoPost, VideoComment, Faq
 from apps.users.models import User
 
 
@@ -43,16 +43,10 @@ class VideoPostSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = (
-            "username",
-            "email",
-            "first_name",
-            "last_name",
-            "is_staff",
-            "bio",
-            "avatar",
-            "telegram",
-            "instagram",
-            "youtube",
-            "github",
-        )
+        fields = "__all__"
+
+
+class FaqSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Faq
+        fields = "__all__"

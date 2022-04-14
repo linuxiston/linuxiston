@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .models import Category, Post, VideoPost, Comment, VideoComment, Tag, User
+from .models import Category, Post, VideoPost, Comment, VideoComment, Tag, User, Faq
 
 from .serializers import (
     CategorySerializer,
@@ -8,7 +8,8 @@ from .serializers import (
     CommentSerializer,
     VideCommentSerializer,
     TagSerializer,
-    UserSerializer
+    UserSerializer,
+    FaqSerializer
 )
 
 
@@ -45,3 +46,8 @@ class TagViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class FaqViewSet(viewsets.ModelViewSet):
+    queryset = Faq.objects.all()
+    serializer_class = FaqSerializer
