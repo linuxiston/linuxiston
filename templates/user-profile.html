@@ -1,5 +1,8 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% block title %}
+    @{{ user.username }}
+{% endblock %}
 {% block content %}
     <!--=====================================-->
     <!--=        User Area Start       	=-->

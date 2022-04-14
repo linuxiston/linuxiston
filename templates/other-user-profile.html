@@ -1,5 +1,8 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% block title %}
+    @{{ cuser.username }}
+{% endblock %}
 {% block content %}
 
     <div class="container d-flex justify-content-center align-items-center" style="height: 70vh">

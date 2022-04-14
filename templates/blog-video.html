@@ -1,5 +1,8 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% block title %}
+    Video Darsliklar
+{% endblock %}
 {% block content %}
 
     <div class="breadcrum-area">
@@ -35,10 +38,13 @@
                             </h3>
                             <div class="author">
                                 <div class="author-thumb">
-                                    <img src="{{ post.author.image }}" width="75px" style="border-radius: 50%" alt="Blog Author">
+                                    <img src="{{ post.author.image }}" width="75px" style="border-radius: 50%"
+                                         alt="Blog Author">
                                 </div>
                                 <div class="info">
-                                    <h6 class="author-name">{{ post.author.full_name }}</h6>
+                                    <h6 class="author-name"><a
+                                            href="{% url 'user-profile' post.author.username %}">{{ post.author.full_name }}</a>
+                                    </h6>
                                     <ul class="blog-meta list-unstyled">
                                         <li>{{ post.created|date:'M d, Y' }}</li>
                                         <li><i class='bx bx-like'></i> {{ post.number_of_likes }}</li>
@@ -47,7 +53,8 @@
                                 </div>
                             </div>
                             <div class="post-thumbnail">
-                                <a href="{{ post.get_absolute_url }}"><img src="{{ post.thumbnail.url }}" alt="Blog"></a>
+                                <a href="{{ post.get_absolute_url }}"><img src="{{ post.thumbnail.url }}"
+                                                                           alt="Blog"></a>
                                 <div class="popup-video">
                                     <a href="{{ post.video_link }}"
                                        class="play-btn popup-youtube"><i

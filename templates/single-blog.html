@@ -1,5 +1,8 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% block title %}
+    {{ post.title }}
+{% endblock %}
 {% block content %}
     <!--=====================================-->
     <!--=       Breadcrumb Area Start       =-->
@@ -41,7 +44,9 @@
                                          alt="Blog Author">
                                 </div>
                                 <div class="info">
-                                    <h6 class="author-name">{{ post.author.full_name }}</h6>
+                                    <h6 class="author-name"><a
+                                            href="{% url 'user-profile' post.author.username %}">{{ post.author.full_name }}</a>
+                                    </h6>
                                     <ul class="blog-meta list-unstyled">
                                         <li>{{ post.created|date:"m, d Y" }}</li>
                                         <li><i class='bx bx-like'></i> {{ post.number_of_likes }}</li>
@@ -84,7 +89,9 @@
                                     <img src="{{ post.author.image }}" width="90px" alt="Blog Author">
                                 </div>
                                 <div class="info">
-                                    <h5 class="title"><a>{{ post.author.full_name }}</a></h5>
+                                    <h5 class="title"><a
+                                            href="{% url 'user-profile' post.author.username %}">{{ post.author.full_name }}</a>
+                                    </h5>
                                     <p>{{ post.author.bio }}.</p>
                                     <ul class="social-share list-unstyled">
                                         <li><a href="{{ post.author.telegram }}"><i class="fab fa-telegram"></i></a>
@@ -111,7 +118,9 @@
                                             </div>
                                             <div class="content">
                                                 <div class="heading">
-                                                    <h5 class="title">{{ comment.author }}</h5>
+                                                    <h5 class="title"><a
+                                                            href="{% url 'user-profile' comment.author.username %}">{{ comment.author }}</a>
+                                                    </h5>
                                                 </div>
                                                 <p>{{ comment.comment }}</p>
                                             </div>

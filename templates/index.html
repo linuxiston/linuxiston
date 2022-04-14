@@ -73,9 +73,9 @@
                             <img src="{% static 'media/icon/icon-6.png' %}" alt="icon">
                         </div>
                         <div class="content">
-                            <h5 class="title"><a href="service-content-strategy.html">Online Platformalar</a></h5>
+                            <h5 class="title"><a href="{% url 'about' %}">Online Platformalar</a></h5>
                             <p>Linux tarjimalari, savol-javob, blog, mahalliy dasturlar ombori va shunga o'xshash foydali loyihalar</p>
-                            <a href="service-content-strategy.html" class="more-btn">Ko'proq bilish</a>
+                            <a href="{% url 'about' %}" class="more-btn">Ko'proq bilish</a>
                         </div>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
                             <img src="{% static 'media/icon/icon-8.png' %}" alt="Apple">
                         </div>
                         <div class="count-number h2">
-                            <span class="number count" data-count="360">30</span>
+                            <span class="number count" data-count="30">30</span>
                             <span class="symbol">+</span>
                         </div>
                         <h6 class="title">Maqola va darsliklar</h6>
@@ -191,7 +191,7 @@
                             <img src="{% static 'media/icon/apple.png' %}" alt="Apple">
                         </div>
                         <div class="count-number h2">
-                            <span class="number count" data-count="64">4</span>
+                            <span class="number count" data-count="20">20</span>
                             <span class="symbol">+</span>
                         </div>
                         <h6 class="title">yillik jamoa</h6>
@@ -343,7 +343,7 @@
                 <div class="section-heading heading-light">
                     <span class="subtitle">Keling birga ishlaymiz</span>
                     <h2 class="title">Bizning jamoaga qo'shiling va biz birgalikda bir kuchmiz</h2>
-                    <a href="" class="axil-btn btn-large btn-fill-white">Jamoaga qo'shilish</a>
+                    <a href="{% url 'contact' %}" class="axil-btn btn-large btn-fill-white">Jamoaga qo'shilish</a>
                 </div>
                 <div class="thumbnail">
                     <div class="larg-thumb" data-sal="zoom-in" data-sal-duration="600" data-sal-delay="100">
