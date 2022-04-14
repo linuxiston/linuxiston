@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Category, Tag, Post, VideoPost, Comment, VideoComment, Faq, Contact
-from apps.users.models import Email
+from apps.users.models import Email, User
 from django.db.models import Q
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .forms import CommentForm, EmailForm, CommentVideForm, ContactForm, WritePostForm
@@ -221,3 +221,21 @@ def liked_video_posts(request):
         "posts": posts,
     }
     return render(request, "liked-video-posts.html", context)
+
+
+def user_posts(request, username):
+    user = User.objects.get(username=username)
+    posts = Post.objects.filter(active=True, author__username=user.username)
+    page_num = request.GET.get("sahifa", 1)
+    paginator = Paginator(posts, 4)
+    try:
+        posts = paginator.page(page_num)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    context = {
+        "posts": posts,
+        "muser": user
+    }
+    return render(request, "user-posts.html", context)
