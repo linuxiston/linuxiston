@@ -81,18 +81,29 @@
                     <h1 class="h2 pt-xl-1 pb-3">Ma'lumotlariz</h1>
 
                     <!-- Basic info -->
-                    <form class="pb-3 pb-lg-4">
+                    <form action="{% url 'user-profile' user.username %}" class="pb-3 pb-lg-4"
+                          method="post">{% csrf_token %}
                         <div class="row pb-2">
                             <div class="col-sm-6 mb-4">
-                                <label for="fn" class="form-label fs-base">Ism</label>
-                                <input type="text" id="fn" class="form-control form-control-lg"
-                                       placeholder="Abdusamad">
+                                <label for="id_first_name" class="form-label fs-base">Ism</label>
+                                {% if user.first_name %}
+                                    <input type="text" id="id_first_name" name="first_name" class="form-control form-control-lg"
+                                           placeholder="{{ user.first_name }}">
+                                {% else %}
+                                    <input type="text" id="id_first_name" name="first_name" class="form-control form-control-lg"
+                                           placeholder="Abdusamad">
+                                {% endif %}
                                 <div class="invalid-feedback">Iltimos ismizni kiriting!</div>
                             </div>
                             <div class="col-sm-6 mb-4">
-                                <label for="sn" class="form-label fs-base">Familiya</label>
-                                <input type="text" id="sn" class="form-control form-control-lg"
-                                       placeholder="Malikov" required="">
+                                <label for="id_last_name" class="form-label fs-base">Familiya</label>
+                                {% if user.last_name %}
+                                    <input type="text" id="id_last_name" name="last_name" class="form-control form-control-lg"
+                                           placeholder="{{ user.last_name }}" required="">
+                                {% else %}
+                                    <input type="text" id="id_last_name" name="last_name" class="form-control form-control-lg"
+                                           placeholder="Malikov" required="">
+                                {% endif %}
                                 <div class="invalid-feedback">Iltimos familiyayizni kiriting!</div>
                             </div>
                             <div class="col-sm-6 mb-4">
@@ -107,29 +118,61 @@
                                        placeholder="malikov2">
                             </div>
                             <div class="col-12 mb-4">
-                                <label for="bio" class="form-label fs-base">Bio <small
+                                <label for="id_bio" class="form-label fs-base">Bio <small
                                         class="text-muted">(ixtiyoriy)</small></label>
-                                <textarea id="bio" class="form-control form-control-lg" rows="4"
-                                          placeholder="O'ziz haqizda qisqacha..."></textarea>
+                                {% if user.bio %}
+                                    <textarea type="text" id="id_bio" name="bio" class="form-control form-control-lg" rows="4"
+                                              placeholder="{{ user.bio }}"></textarea>
+                                {% else %}
+                                    <textarea type="text" id="id_bio" name="bio" class="form-control form-control-lg" rows="4"
+                                              placeholder="O'ziz haqizda qisqacha..."></textarea>
+                                {% endif %}
                             </div>
-                            <div class="col-sm-6 mb-4">
-                                <input type="email" id="email" class="form-control form-control-lg"
-                                       placeholder="instagram havola" required="">
-                                <div class="invalid-feedback">Please provide a valid email address!</div>
-                            </div>
-                            <div class="col-sm-6 mb-4">
-                                <input type="text" class="form-control form-control-lg"
-                                       placeholder="telegram havola">
-                            </div>
-                            <div class="col-sm-6 mb-4">
-                                <input type="email" id="email" class="form-control form-control-lg"
-                                       placeholder="youtube havola" required="">
-                                <div class="invalid-feedback">Please provide a valid email address!</div>
-                            </div>
-                            <div class="col-sm-6 mb-4">
-                                <input type="text" class="form-control form-control-lg"
-                                       placeholder="github havola">
-                            </div>
+                            {% if user.instagram != '#' %}
+                                <div class="col-sm-6 mb-4">
+                                    <input type="url" name="instagram" id="id_instagram"
+                                           class="form-control form-control-lg"
+                                           placeholder="{{ user.instagram }}" required="">
+                                    <div class="invalid-feedback">Please provide a valid address!</div>
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <input type="url" name="telegram" id="id_telegram"
+                                           class="form-control form-control-lg"
+                                           placeholder="{{ user.telegram }}">
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <input type="url" id="id_youtube" name="youtube"
+                                           class="form-control form-control-lg"
+                                           placeholder="{{ user.youtube }}" required="">
+                                    <div class="invalid-feedback">Please provide a valid address!</div>
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <input type="url" name="github" id="id_github" class="form-control form-control-lg"
+                                           placeholder="{{ user.github }}">
+                                </div>
+                            {% else %}
+                                <div class="col-sm-6 mb-4">
+                                    <input type="url" name="instagram" id="id_instagram"
+                                           class="form-control form-control-lg"
+                                           placeholder="Instagram url" required="">
+                                    <div class="invalid-feedback">Please provide a valid address!</div>
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <input type="url" name="telegram" id="id_telegram"
+                                           class="form-control form-control-lg"
+                                           placeholder="Telegram url">
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <input type="url" id="id_youtube" name="youtube"
+                                           class="form-control form-control-lg"
+                                           placeholder="Youtube url" required="">
+                                    <div class="invalid-feedback">Please provide a valid address!</div>
+                                </div>
+                                <div class="col-sm-6 mb-4">
+                                    <input type="url" name="github" id="id_github" class="form-control form-control-lg"
+                                           placeholder="Github url">
+                                </div>
+                            {% endif %}
                         </div>
                         <div class="d-flex mb-3">
                             <button type="submit" class="axil-btn btn-fill-primary">Saqlash</button>
