@@ -1,0 +1,93 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+    <!--=====================================-->
+    <!--=       Breadcrumb Area Start       =-->
+    <!--=====================================-->
+    <div class="breadcrum-area">
+        <div class="container">
+            <div class="breadcrumb">
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+                    <li class="active">Yoqqan Video Darsliklar</li>
+                </ul>
+                <h1 class="title h2">Yoqqan Video Darsliklar</h1>
+            </div>
+        </div>
+        <ul class="shape-group-8 list-unstyled">
+            <li class="shape shape-1" data-sal="slide-right" data-sal-duration="500" data-sal-delay="100"><img
+                    src="{% static 'media/others/bubble-9.png' %}" alt="Bubble"></li>
+            <li class="shape shape-2" data-sal="slide-left" data-sal-duration="500" data-sal-delay="200"><img
+                    src="{% static 'media/others/bubble-10.png' %}" alt="Bubble"></li>
+            <li class="shape shape-3" data-sal="slide-up" data-sal-duration="500" data-sal-delay="300"><img
+                    src="{% static 'media/others/line-4.png' %}" alt="Line"></li>
+        </ul>
+    </div>
+    <!--=====================================-->
+    <!--=        Blog Area Start       	    =-->
+    <!--=====================================-->
+    <section class="section-padding-equal">
+        <div class="container">
+            <div class="row row-40">
+                <div class="col-lg-8">
+                    {% for post in posts %}
+                        <!-- post -->
+                        <div class="blog-grid">
+                            <h3 class="title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                            <div class="author">
+                                <div class="author-thumb">
+                                    <img src="{{ post.author.image }}" width="75px" style="border-radius: 50%"
+                                         alt="Blog Author">
+                                </div>
+                                <div class="info">
+                                    <h6 class="author-name">{{ post.author.full_name }}</h6>
+                                    <ul class="blog-meta list-unstyled">
+                                        <li>{{ post.created|date:"M d, Y" }}</li>
+                                        <li><i class='bx bx-like'></i> {{ post.number_of_likes }}</li>
+                                        <li><i class='bx bx-comment'></i> {{ post.comments.all.count }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="post-thumbnail">
+                                <a href="{{ post.get_absolute_url }}"><img src="{{ post.thumbnail.url }}"
+                                                                           alt="Blog"></a>
+                            </div>
+                            <p>{{ post.description }}</p>
+                            <a href="{{ post.get_absolute_url }}" class="axil-btn btn-borderd btn-large">Batafsil</a>
+                        </div>
+                        <!-- end post -->
+                    {% endfor %}
+                    <div class="pagination">
+                        <ul>
+                            {% if posts.has_previous %}
+                                <li><a class="prev page-numbers" href="?sahifa={{ posts.previous_page_number }}"><i
+                                        class="fa-solid fa-arrow-left"></i></a>
+                                    {% else %}
+                                <li><a class="prev page-numbers"><i class="fa-solid fa-arrow-left"></i></a>
+                                </li>
+                            {% endif %}
+                            {% for i in posts.paginator.page_range %}
+                                {% if posts.number == i %}
+                                    <li><a class="page-numbers current">{{ i }}</a></li>
+                                {% else %}
+                                    <li><a class="page-numbers" href="?sahifa={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if posts.has_next %}
+                                <li><a class="next page-numbers" href="?sahifa={{ posts.next_page_number }}"><i
+                                        class="fa-solid fa-arrow-right"></i></a></li>
+                            {% else %}
+                                <li><a class="next page-numbers"><i class="fa-solid fa-arrow-right"></i></a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <!-- Sidebar -->
+                    {% include 'base/sidebar.html' %}
+                <!-- End sidebar -->
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -14,7 +14,9 @@ from .views import (
     add_video_like_post,
     contact,
     write_post,
-    about_us
+    about_us,
+    liked_posts,
+    liked_video_posts
 )
 
 # app_name = "blogs"
@@ -33,6 +35,8 @@ urlpatterns = [
     path("aloqa/", contact, name="contact"),
     path("biz-haqimizda/", about_us, name="about"),
     path("videolar/", post_list_videos, name="post_list_videos"),
+    path("maqolalar/yoqtirganlar/", liked_posts, name="liked_posts"),
+    path("maqolalar/yoqtirgan-videolar/", liked_video_posts, name="liked_video_posts"),
     path("maqolalar/<str:category>/", post_list_category, name="post_list_category"),
     path("maqola/<str:slug>/", post_detail, name="post_detail"),
     path("video/<str:slug>/", post_video_detail, name="video_post_detail"),

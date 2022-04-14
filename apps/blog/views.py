@@ -189,3 +189,35 @@ def write_post(request):
 
 def about_us(request):
     return render(request, 'about.html')
+
+
+def liked_posts(request):
+    posts = Post.objects.filter(active=True, likes__username=request.user.username)
+    page_num = request.GET.get("sahifa", 1)
+    paginator = Paginator(posts, 4)
+    try:
+        posts = paginator.page(page_num)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    context = {
+        "posts": posts,
+    }
+    return render(request, "liked-posts.html", context)
+
+
+def liked_video_posts(request):
+    posts = VideoPost.objects.filter(likes__username=request.user.username)
+    page_num = request.GET.get("sahifa", 1)
+    paginator = Paginator(posts, 4)
+    try:
+        posts = paginator.page(page_num)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    context = {
+        "posts": posts,
+    }
+    return render(request, "liked-video-posts.html", context)
