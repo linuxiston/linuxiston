@@ -26,7 +26,7 @@ def home(request):
     posts = Post.objects.filter(active=True).order_by('created')
     left = 0
     right = 0
-    if posts.exists():
+    if posts.exists() and posts.count() > 2:
         left = posts[0]
         right = posts[1]
     video_posts = VideoPost.objects.all()
