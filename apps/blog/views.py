@@ -49,14 +49,14 @@ def home(request):
             return HttpResponseRedirect(path)
     else:
         emailform = EmailForm()
-        context = {
-            "left": left,
-            "right": right,
-            "video_posts": video_posts,
-            "faq": faq,
-            "categories": categories,
-        }
-        return render(request, "index.html", context)
+    context = {
+        "left": left,
+        "right": right,
+        "video_posts": video_posts,
+        "faq": faq,
+        "categories": categories,
+    }
+    return render(request, "index.html", context)
 
 
 def post_list(request):
