@@ -23,8 +23,12 @@ def add_video_like_post(request, pk):
 
 
 def home(request):
-    left = Post.objects.filter(active=True)[0]
-    right = Post.objects.filter(active=True)[1]
+    posts = Post.objects.filter(active=True)
+    left = 0
+    right = 0
+    if posts.exists():
+        left = posts[0]
+        right = posts[1]
     video_posts = VideoPost.objects.all()
     faq = Faq.objects.filter(active=True)
     categories = Category.objects.all()[:5]
@@ -163,6 +167,7 @@ def contact(request):
     else:
         contact_form = ContactForm()
     return render(request, 'contact.html', {'contact_form': contact_form})
+
 
 @login_required()
 def write_post(request):
