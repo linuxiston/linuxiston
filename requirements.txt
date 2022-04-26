@@ -6,10 +6,12 @@ coreapi==2.3.3
 coreschema==0.0.4
 cryptography==36.0.2
 defusedxml==0.7.1
+dj-database-url==0.5.0
 Django==4.0.3
 django-allauth==0.50.0
 django-ckeditor==6.2.0
 django-js-asset==2.0.0
+django-quill-editor==0.1.40
 django-rest-swagger==2.2.0
 djangorestframework==3.13.1
 djangorestframework-simplejwt==5.1.0
@@ -23,6 +25,7 @@ Pillow==9.1.0
 psycopg2-binary==2.9.3
 pycparser==2.21
 PyJWT==2.3.0
+python-dotenv==0.20.0
 python3-openid==3.2.0
 pytz==2022.1
 requests==2.27.1
