@@ -11,7 +11,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),  # allauth
     path('logout/', LogoutView.as_view(), name='logout'),
-    path("api2", schema_view),
+    path("api2/", schema_view),
     path("", include("apps.blog.urls")),
 ]
 
